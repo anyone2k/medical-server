@@ -44,7 +44,7 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
 // @access  public
 exports.postRegister = asyncHandler(async (req, res, next) => {
   const { email, password, firstName, lastName, dateOfBirth } = req.body;
-  const findbyEmail = await User.findOne({ email: email });
+  const user = await User.findOne({ email: email });
   if (firstName !== "" && lastName !== "" && email !== "" && password !== "") {
     const data = {
       email: email,
@@ -56,12 +56,22 @@ exports.postRegister = asyncHandler(async (req, res, next) => {
       dateOfBirth: dateOfBirth,
     };
     console.log(data);
-    if (findbyEmail === null) {
+    if (user === null) {
       const user = await User.create(data);
 
-      const token = jwt.sign({ id: user._id }, process.env.ACCESS_TOKEN_SECRET);
-
-      res.status(201).send({ success: true, Token: token });
+      return res.status(201).send({
+        success: true,
+        data: {
+          id: user._id,
+          email: user.email,
+          fullName: user.fullName,
+          profilePicture: user.profilePicture,
+          isActiveAccount: user.isActiveAccount,
+          isDoctor: user.isDoctor,
+        },
+        accessToken: user.generateAccessToken(),
+        refreshToken: user.generateRefreshToken(),
+      });
     } else {
       res
         .status(409)

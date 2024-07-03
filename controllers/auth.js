@@ -32,24 +32,23 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
 // @route   post /api/v1/auth/register
 // @access  public
 exports.postRegister = asyncHandler(async (req, res, next) => {
-  const { email, password, fullName, dateOfBirth } = req.body;
+  const { email, password, firstName, lastName, dateOfBirth } = req.body;
   const findbyEmail = await User.findOne({ email: email });
-  const data = {
-    email: email,
-    password: password,
-    fullName: { firstName: fullName.firstName, lastName: fullName.lastName },
-    dateOfBirth: dateOfBirth,
-  };
-  if (
-    fullName.firstName !== "" &&
-    fullName.lastName !== "" &&
-    email !== "" &&
-    password !== ""
-  ) {
+  if (firstName !== "" && lastName !== "" && email !== "" && password !== "") {
+    const data = {
+      email: email,
+      password: password,
+      fullName: {
+        firstName: firstName,
+        lastName: lastName,
+      },
+      dateOfBirth: dateOfBirth,
+    };
+    console.log(data);
     if (findbyEmail === null) {
-      const User = await User.create(data);
+      const user = await User.create(data);
 
-      const token = jwt.sign({ id: User._id }, process.env.ACCESS_TOKEN_SECRET);
+      const token = jwt.sign({ id: user._id }, process.env.ACCESS_TOKEN_SECRET);
 
       res.status(201).send({ success: true, Token: token });
     } else {

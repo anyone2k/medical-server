@@ -31,8 +31,8 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
       );
       return res.status(200).send({
         success: true,
-        accessToken: token,
-        refreshToken: findbyEmail.refreshToken,
+        accessToken: findbyEmail.generateAccessToken(),
+        refreshToken: findbyEmail.refreshToken(),
       });
     }
   } else {

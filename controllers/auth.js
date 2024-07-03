@@ -18,7 +18,10 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
         .status(401)
         .send({ success: false, msg: "email or password incorrect." });
     } else {
-      const token = jwt.sign({ id: findbyEmail._id }, ACCESS_TOKEN_SECRET);
+      const token = jwt.sign(
+        { id: findbyEmail._id },
+        process.env.ACCESS_TOKEN_SECRET
+      );
       return res.status(200).send({ success: true, Token: token });
     }
   } else {

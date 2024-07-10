@@ -2,6 +2,7 @@
 const express = require("express");
 const dotenv = require("dotenv").config({ path: "./config/config.env" });
 const colors = require("colors");
+const cors = require("cors");
 
 // Internal Imports
 const errorHandler = require("./middleware/error");
@@ -16,6 +17,7 @@ connectDB();
 const app = express();
 
 // Mount routers
+app.use(cors());
 app.use(express.json());
 app.use(`${serverVersion}/auth`, routesAuth);
 // Using the errorHandler middleware

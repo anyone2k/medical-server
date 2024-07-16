@@ -20,7 +20,6 @@ const app = express();
 app.use(cors());
 
 // Mount routers
-app.use(cors());
 app.use(express.json());
 app.use(`${serverVersion}/auth`, routesAuth);
 app.use(`${serverVersion}/users`, routesUsers);

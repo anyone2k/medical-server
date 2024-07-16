@@ -21,7 +21,6 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
       return res.status(200).send({
         success: true,
         data: {
-          id: findbyEmail._id,
           email: findbyEmail.email,
           fullName: findbyEmail.fullName,
           profilePicture: findbyEmail.profilePicture,
@@ -46,23 +45,11 @@ exports.postRegister = asyncHandler(async (req, res, next) => {
   const { email, password, firstName, lastName, dateOfBirth } = req.body;
   const user = await User.findOne({ email: email });
   if (firstName !== "" && lastName !== "" && email !== "" && password !== "") {
-    const data = {
-      email: email,
-      password: password,
-      fullName: {
-        firstName: firstName,
-        lastName: lastName,
-      },
-      dateOfBirth: dateOfBirth,
-    };
-    console.log(data);
     if (user === null) {
       const user = await User.create(data);
-
       return res.status(201).send({
         success: true,
         data: {
-          id: user._id,
           email: user.email,
           fullName: user.fullName,
           profilePicture: user.profilePicture,

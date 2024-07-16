@@ -2,12 +2,14 @@
 const express = require("express");
 const dotenv = require("dotenv").config({ path: "./config/config.env" });
 const colors = require("colors");
+const cors = require("cors");
 
 // Internal Imports
 const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
 const routesAuth = require("./routes/auth");
-
+const routesUsers = require("./routes/users");
+const routesMe = require("./routes/me");
 // Common
 const serverVersion = "/api/v1";
 // Connecting the datebase
@@ -15,9 +17,14 @@ connectDB();
 
 const app = express();
 
+app.use(cors());
+
 // Mount routers
 app.use(express.json());
 app.use(`${serverVersion}/auth`, routesAuth);
+app.use(`${serverVersion}/users`, routesUsers);
+app.use(`${serverVersion}/me`, routesMe);
+
 // Using the errorHandler middleware
 app.use(errorHandler);
 

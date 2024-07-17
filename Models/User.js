@@ -42,6 +42,11 @@ UserSchema.methods.generateAccessToken = function () {
   return jwt.sign(
     {
       _id: this._id,
+      email: this.email,
+      fullName: this.fullName,
+      profilePicture: this.profilePicture,
+      isActiveAccount: this.isActiveAccount,
+      isDoctor: this.isDoctor,
     },
     process.env.ACCESS_TOKEN_SECRET,
     {
@@ -61,5 +66,4 @@ UserSchema.methods.generateRefreshToken = function () {
     }
   );
 };
-
 module.exports = mongoose.model("MedicalUsers", UserSchema);

@@ -24,7 +24,7 @@ exports.protect = (req, res, next) => {
     const tokenDecoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     req.id = tokenDecoded._id;
 
-    if (User.find(req.id) === null) {
+    if (User.findOne({ _id: req.id }) === null) {
       return res
         .status(401)
         .send("Not authorized to access this route / Invalid Token");
@@ -38,9 +38,7 @@ exports.protect = (req, res, next) => {
 };
 
 exports.isDoctor = (req, res, next) => {
-  const id = req.id;
-
-  const user = User.findById(id);
+  const user = User.findOne({ _id: req.id });
   try {
     if (user === undefined) {
       return res

@@ -1,12 +1,14 @@
-// Internal Exports
+// Internal Imports
 const Users = require("../Models/User");
+const asyncHandler = require("../middleware/async");
 // @desc  read me
 // @route   GET /me
 // @access  Private
-exports.getMe = (req, res, next) => {
-  const user = Users.findById(req._id);
+exports.getMe = asyncHandler(async (req, res, next) => {
+  const user = await Users.findOne({ _id: req.id });
   return res.status(200).send(user);
-};
+});
+
 // @desc  update me
 // @route   PUT /me
 // @access  Private

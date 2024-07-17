@@ -5,7 +5,9 @@
 // use the following code as a reference
 //// External imports
 const express = require("express");
+
 // Internal imports
+const { protect, isDoctor } = require("../middleware/auth");
 // create the internal imports
 const {
   getPublications,
@@ -24,8 +26,8 @@ router.route("").get(getPublications).post(createPublication);
 
 router
   .route("/:id")
-  .get(getPublication)
-  .put(updatePublication)
-  .delete(deletePublication);
+  .get(protect, getPublication)
+  .put(protect, isDoctor, updatePublication)
+  .delete(protect, isDoctor, deletePublication);
 
 module.exports = router;

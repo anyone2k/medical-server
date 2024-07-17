@@ -22,8 +22,7 @@ exports.protect = (req, res, next) => {
 
     token = token.split(" ")[1];
     const tokenDecoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-
-    req.id = tokenDecoded.id;
+    req.id = tokenDecoded._id;
 
     if (User.find(req.id) === null) {
       return res

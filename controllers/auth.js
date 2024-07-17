@@ -1,5 +1,6 @@
 // External imports
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 // Internal Imports
 const User = require("../Models/User");
 const ErrorResponse = require("../utils/errorResponse");
@@ -13,24 +14,23 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body || {};
   const findbyEmail = await User.findOne({ email: email });
   if (findbyEmail !== null) {
-    if (password !== findbyEmail.password) {
-      return res
-        .status(401)
-        .send({ success: false, msg: "email or password incorrect." });
-    } else {
-      return res.status(200).send({
-        success: true,
-        data: {
-          email: findbyEmail.email,
-          fullName: findbyEmail.fullName,
-          profilePicture: findbyEmail.profilePicture,
-          isActiveAccount: findbyEmail.isActiveAccount,
-          isDoctor: findbyEmail.isDoctor,
-        },
-        accessToken: findbyEmail.generateAccessToken(),
-        refreshToken: findbyEmail.generateRefreshToken(),
-      });
-    }
+    await bcrypt.compare(
+      password,
+      findbyEmail.password,
+      function (err, result) {
+        if (!result) {
+          return res
+            .status(401)
+            .send({ success: false, msg: "email or password incorrect." });
+        } else {
+          return res.status(200).send({
+            success: true,
+            accessToken: findbyEmail.generateAccessToken(),
+            refreshToken: findbyEmail.generateRefreshToken(),
+          });
+        }
+      }
+    );
   } else {
     return res
       .status(401)
@@ -43,11 +43,12 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
 // @access  public
 exports.postRegister = asyncHandler(async (req, res, next) => {
   const { email, password, firstName, lastName, dateOfBirth } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
   const user = await User.findOne({ email: email });
   if (firstName !== "" && lastName !== "" && email !== "" && password !== "") {
     const data = {
       email: email,
-      password: password,
+      password: hashedPassword,
       fullName: {
         firstName: firstName,
         lastName: lastName,

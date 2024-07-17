@@ -25,13 +25,7 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
         } else {
           return res.status(200).send({
             success: true,
-            data: {
-              email: user.email,
-              fullName: user.fullName,
-              profilePicture: user.profilePicture,
-              isActiveAccount: user.isActiveAccount,
-              isDoctor: user.isDoctor,
-            },
+
             accessToken: findbyEmail.generateAccessToken(),
             refreshToken: findbyEmail.generateRefreshToken(),
           });

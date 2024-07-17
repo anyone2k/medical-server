@@ -34,12 +34,12 @@ const PublicationSchema = new Schema({
     required: true,
   },
 });
-PublicationSchema.pre("save", async function (next) {
-  const user = await this.model("User").findById(this.user);
-  if (!user.isDoctor) {
-    throw new Error("Only doctors can create publications");
-  }
-  next();
-});
+// PublicationSchema.pre("save", async function (next) {
+//   const user = await this.model("MedicalUsers").findById(this.user);
+//   if (!user.isDoctor) {
+//     throw new Error("Only doctors can create publications");
+//   }
+//   next();
+// });
 
 module.exports = mongoose.model("Publication", PublicationSchema);

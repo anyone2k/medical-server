@@ -25,6 +25,13 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
         } else {
           return res.status(200).send({
             success: true,
+            data: {
+              email: user.email,
+              fullName: user.fullName,
+              profilePicture: user.profilePicture,
+              isActiveAccount: user.isActiveAccount,
+              isDoctor: user.isDoctor,
+            },
             accessToken: findbyEmail.generateAccessToken(),
             refreshToken: findbyEmail.generateRefreshToken(),
           });
@@ -59,13 +66,7 @@ exports.postRegister = asyncHandler(async (req, res, next) => {
       const user = await User.create(data);
       return res.status(201).send({
         success: true,
-        data: {
-          email: user.email,
-          fullName: user.fullName,
-          profilePicture: user.profilePicture,
-          isActiveAccount: user.isActiveAccount,
-          isDoctor: user.isDoctor,
-        },
+
         accessToken: user.generateAccessToken(),
         refreshToken: user.generateRefreshToken(),
       });

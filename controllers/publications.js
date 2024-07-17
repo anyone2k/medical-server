@@ -15,7 +15,8 @@ exports.getPublications = asyncHandler(async (req, res, next) => {
 // @route   get /api/v1/publications/:id
 // @access  public
 exports.getPublication = asyncHandler(async (req, res, next) => {
-  if (!(await Publication.findById(req.params.id))) {
+  const publication = await Publication.findById(req.params.id);
+  if (publication === null) {
     return next(
       new ErrorResponse(
         `Publication not found with id of ${req.params.id}`,

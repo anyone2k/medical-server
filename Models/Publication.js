@@ -25,12 +25,12 @@ const PublicationSchema = new Schema({
   },
   user: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: "MedicalUsers",
     required: true,
   },
   modifiedBy: {
     type: [Schema.Types.ObjectId],
-    ref: "User",
+    ref: "MedicalUsers",
     required: true,
   },
 });

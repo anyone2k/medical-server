@@ -22,7 +22,10 @@ const router = express.Router();
 
 // create the routes for the publications
 
-router.route("").get(getPublications).post(createPublication);
+router
+  .route("")
+  .get(protect, getPublications)
+  .post(protect, isDoctor, createPublication);
 
 router
   .route("/:id")

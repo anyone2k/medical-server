@@ -37,3 +37,5 @@ PublicationSchema.pre("save", async function (next) {
   }
   next();
 });
+
+module.exports = mongoose.model("Publication", PublicationSchema);

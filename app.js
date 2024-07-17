@@ -9,6 +9,7 @@ const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
 const routesAuth = require("./routes/auth");
 const routesMe = require("./routes/me");
+const routesPublications = require("./routes/publications");
 // Common
 const serverVersion = "/api/v1";
 // Connecting the datebase
@@ -22,6 +23,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(`${serverVersion}/auth`, routesAuth);
+app.use(`${serverVersion}/publications`, routesPublications);
 app.use(`${serverVersion}/me`, routesMe);
 
 // Using the errorHandler middleware

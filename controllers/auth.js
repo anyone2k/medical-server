@@ -45,6 +45,15 @@ exports.postRegister = asyncHandler(async (req, res, next) => {
   const { email, password, firstName, lastName, dateOfBirth } = req.body;
   const user = await User.findOne({ email: email });
   if (firstName !== "" && lastName !== "" && email !== "" && password !== "") {
+    const data = {
+      email: email,
+      password: password,
+      fullName: {
+        firstName: firstName,
+        lastName: lastName,
+      },
+      dateOfBirth: dateOfBirth,
+    };
     if (user === null) {
       const user = await User.create(data);
       return res.status(201).send({

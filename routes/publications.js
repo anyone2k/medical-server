@@ -22,15 +22,12 @@ const router = express.Router();
 
 // create the routes for the publications
 
-router
-  .route("")
-  .get(protect, getPublications)
-  .post(protect, isDoctor, createPublication);
+router.route("").get(getPublications).post(createPublication);
 
 router
   .route("/:id")
-  .get(protect, getPublication)
-  .put(protect, isDoctor, updatePublication)
-  .delete(protect, isDoctor, deletePublication);
+  .get(getPublication)
+  .put(updatePublication)
+  .delete(deletePublication);
 
 module.exports = router;

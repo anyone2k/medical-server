@@ -48,6 +48,9 @@ app.use(`${serverVersion}/publications`, routesPublications);
 const routesMe = require("./routes/me");
 app.use(`${serverVersion}/me`, routesMe);
 
+const routesUsers = require("./routes/users");
+app.use(`${serverVersion}/users`, routesUsers);
+
 // Using the errorHandler middleware
 const errorHandler = require("./middleware/error");
 app.use(errorHandler);

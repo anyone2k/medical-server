@@ -31,7 +31,7 @@ router
 router
   .route("/:id")
   .post(protect, isDoctor, createPublication)
-  .get(getPublication)
+  // .get(getPublication)
   .put(updatePublication)
   .delete(deletePublication);
 

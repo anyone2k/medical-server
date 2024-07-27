@@ -1,4 +1,3 @@
-// External imports
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -8,23 +7,26 @@ const UserSchema = new mongoose.Schema(
   {
     email: {
       type: String,
-      require: [true, "Please provide an email"],
+      required: [true, "Please provide an email"],
       unique: true,
       validate: [validator.isEmail, "Please provide a valid email"],
     },
     password: {
       type: String,
-      require: [true, "Please provide a password"],
+      required: [true, "Please provide a password"],
       select: false,
       minlength: 6,
     },
-    fullName: {
-      firstName: String,
-      lastName: String,
+    firstName: {
+      type: String,
+      required: [true, "Please provide a first name"],
+    },
+    lastName: {
+      type: String,
+      required: [true, "Please provide a last name"],
     },
     dateOfBirth: {
       type: Date,
-      require: true,
       trim: true,
     },
     profilePicture: {
@@ -45,7 +47,7 @@ const UserSchema = new mongoose.Schema(
 
 UserSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
-    next();
+    return next();
   }
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
@@ -79,4 +81,13 @@ UserSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-module.exports = mongoose.model("MedicalUsers", UserSchema);
+const MedicalUser = mongoose.model("MedicalUsers", UserSchema);
+
+// Ensure the unique index is created
+MedicalUser.on("index", (error) => {
+  if (error) {
+    console.error("An error occurred while creating the index:", error);
+  }
+});
+
+module.exports = MedicalUser;

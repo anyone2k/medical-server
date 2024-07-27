@@ -16,16 +16,21 @@ const {
   updatePublication,
   deletePublication,
 } = require("../controllers/publications");
+const advancedResults = require("../middleware/advancedResults");
+const Publication = require("../Models/Publication");
 
 // create the router
 const router = express.Router();
 
 // create the routes for the publications
 
-router.route("").get(getPublications).post(createPublication);
+router
+  .route("")
+  .get(protect, advancedResults(Publication, "user"), getPublications);
 
 router
   .route("/:id")
+  .post(protect, isDoctor, createPublication)
   .get(getPublication)
   .put(updatePublication)
   .delete(deletePublication);

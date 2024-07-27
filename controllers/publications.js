@@ -2,13 +2,13 @@
 const Publication = require("../Models/Publication");
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
+const User = require("../Models/User");
 
 // // @desc  get all publications
 // // @route   get /api/v1/publications
 // // @access  public
 exports.getPublications = asyncHandler(async (req, res, next) => {
-  const publications = await Publication.find();
-  return res.status(200).send(publications);
+  return res.status(200).json(res.advancedResults);
 });
 
 // @desc  get single publication
@@ -31,7 +31,13 @@ exports.getPublication = asyncHandler(async (req, res, next) => {
 // @route   post /api/v1/publications
 // @access  private
 exports.createPublication = asyncHandler(async (req, res, next) => {
-  const publication = await Publication.create(req.body);
+  if (!req.params.id || !(await User.findById(req.params.id)))
+    return next(new ErrorResponse("User not found", 404));
+  delete req.body.user;
+  const publication = await Publication.create({
+    ...req.body,
+    user: req.params.id,
+  });
   res.status(201).send(publication);
 });
 

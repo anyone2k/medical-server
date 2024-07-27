@@ -43,23 +43,10 @@ exports.protect = async (req, res, next) => {
 };
 
 exports.isDoctor = asyncHandler(async (req, res, next) => {
-  const user = await User.findOne({ _id: req.id });
-  console.log(user.isDoctor);
-  try {
-    if (user === undefined) {
-      return res
-        .status(401)
-        .send("Not authorized to access this route / Invalid Token");
-    }
-    if (!user.isDoctor) {
-      return res
-        .status(401)
-        .send("Not authorized to access this route / Invalid Token");
-    }
-    next();
-  } catch (error) {
+  if (!req.user.isDoctor) {
     return res
       .status(401)
       .send("Not authorized to access this route / Invalid Token");
   }
+  next();
 });

@@ -28,7 +28,7 @@ exports.getPublication = asyncHandler(async (req, res, next) => {
 });
 
 // @desc  create publication
-// @route   post /api/v1/publications
+// @route   post /api/v1/publications/:id (user id)
 // @access  private
 exports.createPublication = asyncHandler(async (req, res, next) => {
   if (!req.params.id || !(await User.findById(req.params.id)))

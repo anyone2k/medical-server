@@ -1,0 +1,49 @@
+[
+  {
+    "title": "Covid-19",
+    "content": "# Rapport Médical du Patient COVID-19\n\nNom : No Admin 1\n\nÂge : 45 ans\nDate d'Admission : 12 juillet 2024\n\n### Symptômes à l'Admission\n- Température : 39,2 °C  \n- Toux : Sèche  \n- Dyspnée : Modérée  \n- Fatigue : Intense  \n- Perte de goût et d'odorat : Présente  \n\n### Examens\n- Test PCR : Positif  \n- Radiographie : Pneumonie virale  \n- Saturation : 92%  \n\n### Traitement\n- Oxygène par masque  \n- Remdesivir et Dexaméthasone  \n\n### Évolution\n- J1 : Légère amélioration, saturation à 94%  \n- J3 : Anxiété due à l'oppression thoracique  \n- J7 : État stable, saturation à 96%  \n\n### Conclusion\nPatient en voie de rétablissement, sortie prévue sous réserve de surveillance. Suivi psychologique recommandé.  \n\nSigné : Dr. Émilie Martin  \nDate : 16 juillet 2024",
+    "sicknessType": "Respiratoire",
+    "files": [
+      "https://www.inspq.qc.ca/sites/default/files/covid/pci-covid-napperon.png",
+      "https://www.citymd.com/sites/default/files/inline-images/quest_result1000x792.jpeg"
+    ],
+    "user": "66a57d661bfa51dc951a0b96",
+    "modifiedBy": [
+      {
+        "doctor": "66a57d5b1bfa51dc951a0b94",
+        "date": "2024-07-17T04:12:02.138Z"
+      }
+    ]
+  },
+  {
+    "title": "VIH",
+    "content": "# Rapport Médical du Patient VIH\n\nNom : No Admin 1\n\nÂge : 32 ans\nDate d'Admission : 10 juillet 2024\n\n### Symptômes à l'Admission\n- Fièvre légère  \n- Fatigue chronique  \n- Perte de poids  \n- Infections opportunistes  \n\n### Examens\n- Test VIH : Positif  \n- CD4 Count : 200 cells/µL  \n- Charge virale : Élevée  \n\n### Traitement\n- Thérapie antirétrovirale (TAR)  \n- Prophylaxie pour infections opportunistes  \n\n### Évolution\n- J1 : Commencement du TAR, ajustement des médicaments  \n- J7 : Stabilisation des symptômes, suivi rapproché requis  \n\n### Conclusion\nLe patient répond positivement au traitement initial. Suivi continu et ajustement de la thérapie requis.  \n\nSigné : Dr. Pauline Dubois  \nDate : 15 juillet 2024",
+    "sicknessType": "Immunodéficience",
+    "files": [
+      "https://images.drlogy.com/assets/uploads/lab/image/hiv-1-and-2-antibodies-test-report-format-example-sample-template-drlogy-lab-report.webp",
+      "https://pbs.twimg.com/media/EGSDC8vU4AAOINy.jpg"
+    ],
+    "user": "66a57d661bfa51dc951a0b96",
+    "modifiedBy": [
+      {
+        "doctor": "66a57d5b1bfa51dc951a0b94",
+        "date": "2024-07-17T04:12:02.138Z"
+      }
+    ]
+  },
+  {
+    "title": "Cancer",
+    "content": "Un cancer est provoqué par certains changements au niveau des gènes d’une ou de plusieurs\ncellules. Les gènes sont des fragments d’ADN (acide désoxyribonucléique) présents dans\ntoutes les cellules. Certains gènes donnent des instructions aux cellules et contrôlent quand\nelles doivent croître et se multiplier. Mais lorsque ces gènes sont endommagés, la cellule peut\ndevenir cancéreuse et se comporter anormalement. Une fois qu’un cancer commence, les\ncellules cancéreuses peuvent se multiplier de manière incontrôlée, prendre le dessus sur les\ncellules normales et les empêcher de remplir leur fonction",
+    "sicknessType": "comportent des cellules cancéreuses. Mais de nombreuses tumeurs ne sont pas cancéreuses ; elles sont alors appelées bénignes. Les tumeurs cancéreuses sont appelées malignes",
+    "files": [
+      "https://www.cancer.org/content/dam/cancer-org/cancer-control/fr/booklets-flyers/what-is-cancer.pdf"
+    ],
+    "user": "66a57d661bfa51dc951a0b96",
+    "modifiedBy": [
+      {
+        "doctor": "66a57d5b1bfa51dc951a0b94",
+        "date": "2024-07-27T02:19:12.447Z"
+      }
+    ]
+  }
+]

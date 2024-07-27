@@ -28,18 +28,19 @@ const PublicationSchema = new Schema({
     ref: "MedicalUsers",
     required: true,
   },
-  modifiedBy: {
-    type: [Schema.Types.ObjectId],
-    ref: "MedicalUsers",
-    required: true,
-  },
+  modifiedBy: [
+    {
+      doctor: {
+        type: Schema.Types.ObjectId,
+        ref: "MedicalUsers",
+        required: true,
+      },
+      date: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
 });
-// PublicationSchema.pre("save", async function (next) {
-//   const user = await this.model("MedicalUsers").findById(this.user);
-//   if (!user.isDoctor) {
-//     throw new Error("Only doctors can create publications");
-//   }
-//   next();
-// });
 
 module.exports = mongoose.model("Publication", PublicationSchema);

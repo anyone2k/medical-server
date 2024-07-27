@@ -26,7 +26,11 @@ const router = express.Router();
 
 router
   .route("")
-  .get(protect, advancedResults(Publication, "user"), getPublications);
+  .get(
+    protect,
+    advancedResults(Publication, "user modifiedBy.doctor"),
+    getPublications
+  );
 
 router
   .route("/:id")

@@ -35,13 +35,10 @@ exports.putMe = asyncHandler(async (req, res, next) => {
   const filter = {};
   if (req.body.email) filter.email = req.body.email;
   if (req.body.fullName) {
-    filter.fullName = {};
-    if (req.body.fullName.firstName)
-      filter.fullName.firstName = req.body.fullName.firstName;
-    else filter.fullName.firstName = req.user.fullName.firstName;
-    if (req.body.fullName.lastName)
-      filter.fullName.lastName = req.body.fullName.lastName;
-    else filter.fullName.lastName = req.user.fullName.lastName;
+    if (req.body.firstName) filter.firstName = req.body.firstName;
+    else filter.fullName.firstName = req.user.firstName;
+    if (req.body.lastName) filter.lastName = req.body.lastName;
+    else filter.lastName = req.user.lastName;
   }
   if (req.body.dateOfBirth) filter.dateOfBirth = req.body.dateOfBirth;
   if (req.body.profilePicture) filter.profilePicture = req.body.profilePicture;

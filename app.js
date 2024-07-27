@@ -1,36 +1,58 @@
 // External Imports
 const express = require("express");
-const dotenv = require("dotenv").config({ path: "./config/config.env" });
+const dotenv = require("dotenv");
 const colors = require("colors");
 const cors = require("cors");
+const helmet = require("helmet");
+const hpp = require("hpp");
+const xss = require("xss-clean");
+const rateLimit = require("express-rate-limit");
+const expressMongoSanitize = require("express-mongo-sanitize");
 
-// Internal Imports
-const errorHandler = require("./middleware/error");
-const connectDB = require("./config/db");
-const routesAuth = require("./routes/auth");
-const routesMe = require("./routes/me");
-const routesPublications = require("./routes/publications");
+// Load env vars
+dotenv.config({ path: "./config/config.env" });
+
 // Common
-const serverVersion = "/api/v1";
+const serverVersion = process.env.SERVER_VERSION;
+console.log(`Server version: ${serverVersion}`.yellow.bold);
+
 // Connecting the datebase
+const connectDB = require("./config/db");
 connectDB();
 
+// Constants
 const app = express();
+const PORT = process.env.PORT || 5000;
 
+// Middlewares
 app.use(cors());
-
-// Mount routers
 app.use(express.json());
+app.use(helmet());
+app.use(hpp());
+app.use(xss());
+app.use(expressMongoSanitize());
+app.use(
+  rateLimit({
+    windowMs: 10 * 60 * 1000,
+    max: 100,
+  })
+);
 
+// Routes
+const routesAuth = require("./routes/auth");
 app.use(`${serverVersion}/auth`, routesAuth);
+
+const routesPublications = require("./routes/publications");
 app.use(`${serverVersion}/publications`, routesPublications);
+
+const routesMe = require("./routes/me");
 app.use(`${serverVersion}/me`, routesMe);
 
 // Using the errorHandler middleware
+const errorHandler = require("./middleware/error");
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
-
+// Server
 const server = app.listen(PORT, () => {
   console.log(
     `Server listen on port : ${PORT} and devmode: ${process.env.NODE_ENV}`

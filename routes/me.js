@@ -5,6 +5,10 @@ const { protect } = require("../middleware/auth");
 
 const router = express.Router();
 
-router.route("/").get(protect, getMe).put(protect, putMe).delete(deleteMe);
+router
+  .route("/")
+  .get(protect, getMe)
+  .put(protect, putMe)
+  .delete(protect, deleteMe);
 
 module.exports = router;

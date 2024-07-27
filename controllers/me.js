@@ -38,8 +38,10 @@ exports.putMe = asyncHandler(async (req, res, next) => {
     filter.fullName = {};
     if (req.body.fullName.firstName)
       filter.fullName.firstName = req.body.fullName.firstName;
+    else filter.fullName.firstName = req.user.fullName.firstName;
     if (req.body.fullName.lastName)
       filter.fullName.lastName = req.body.fullName.lastName;
+    else filter.fullName.lastName = req.user.fullName.lastName;
   }
   if (req.body.dateOfBirth) filter.dateOfBirth = req.body.dateOfBirth;
   if (req.body.profilePicture) filter.profilePicture = req.body.profilePicture;
@@ -58,7 +60,10 @@ exports.putMe = asyncHandler(async (req, res, next) => {
 // @desc  Delete me
 // @route   DELETE /me
 // @access  Private
-exports.deleteMe = (req, res, next) => {
-  Users.deleteById(req._id);
-  res.status(204).send();
+exports.deleteMe = async (req, res, next) => {
+  await Users.findByIdAndDelete(req.user._id);
+  res.status(200).send({
+    success: true,
+    data: {},
+  });
 };

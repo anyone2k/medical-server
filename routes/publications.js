@@ -35,8 +35,7 @@ router
 router
   .route("/:id")
   .post(protect, isDoctor, createPublication)
-  // .get(getPublication)
-  .put(updatePublication)
-  .delete(deletePublication);
+  .put(protect, isDoctor, updatePublication)
+  .delete(protect, isDoctor, deletePublication);
 
 module.exports = router;

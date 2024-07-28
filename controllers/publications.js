@@ -47,7 +47,15 @@ exports.createPublication = asyncHandler(async (req, res, next) => {
 exports.updatePublication = asyncHandler(async (req, res, next) => {
   const publication = await Publication.findByIdAndUpdate(
     req.params.id,
-    req.body,
+    {
+      ...req.body,
+      // Add to the modifiedBy array the doctor id and the date
+      $push: {
+        modifiedBy: {
+          doctor: req.user.id,
+        },
+      },
+    },
     {
       new: true,
       runValidators: true,
@@ -77,5 +85,8 @@ exports.deletePublication = asyncHandler(async (req, res, next) => {
       )
     );
   }
-  res.status(204).send();
+  res.status(200).send({
+    success: true,
+    data: {},
+  });
 });

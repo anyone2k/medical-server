@@ -1,5 +1,7 @@
-const advancedResults =
-  (model, populate, constraints) => async (req, res, next) => {
+const asyncHandler = require("./async");
+
+const advancedResults = (model, populate, constraints) =>
+  asyncHandler(async (req, res, next) => {
     let query;
 
     // Copy req.query
@@ -78,6 +80,6 @@ const advancedResults =
     };
 
     next();
-  };
+  });
 
 module.exports = advancedResults;

@@ -37,6 +37,10 @@ const UserSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isNurse: {
+      type: Boolean,
+      default: false,
+    },
     isActiveAccount: {
       type: Boolean,
       default: false,

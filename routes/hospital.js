@@ -67,22 +67,22 @@ router
   .delete(protect, authorize("admin"), deleteDepartment);
 
 router
-  .route("/:id/departements/:departementId/staff")
+  .route("/:id/departements/:departmentId/staff")
   .get(protect, getStaff)
   .post(protect, authorize("admin"), createStaff);
 router
-  .route("/:id/departements/:departementId/staff/:staffId")
+  .route("/:id/departements/:departmentId/staff/:staffId")
   .get(protect, getStaffById)
   .put(protect, authorize("admin"), updateStaff)
   .delete(protect, authorize("admin"), deleteStaff);
 
 router
-  .route("/:id/departements/:departementId/patients")
+  .route("/:id/departements/:departmentId/patients")
   .get(protect, getPatients)
   .post(protect, authorize("admin"), createPatient);
 
 router
-  .route("/:id/departements/:departementId/patients/:patientId")
+  .route("/:id/departements/:departmentId/patients/:patientId")
   .get(protect, getPatientById)
   .put(protect, authorize("admin"), updatePatient)
   .delete(protect, authorize("admin"), deletePatient);

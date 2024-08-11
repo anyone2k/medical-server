@@ -38,12 +38,12 @@ router
 
 router
   .route("/:id/departements")
-  .get(getDepartements)
-  .post(authorize("admin"), createDepartment);
+  .get(protect, getDepartements)
+  .post(protect, authorize("admin"), createDepartment);
 
 router
   .route("/:id/departements/:departmentId")
-  .get(getDepartment)
+  .get(protect, getDepartment)
   .put(protect, authorize("admin"), updateDepartment)
   .delete(protect, authorize("admin"), deleteDepartment);
 

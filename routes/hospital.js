@@ -16,7 +16,21 @@ const {
   deleteDepartment,
 } = require("../controllers/departement");
 
-const { getStaff } = require("../controllers/staff");
+const {
+  getPatients,
+  getPatientById,
+  createPatient,
+  updatePatient,
+  deletePatient,
+} = require("../controllers/patient");
+
+const {
+  getStaff,
+  getStaffById,
+  createStaff,
+  updateStaff,
+  deleteStaff,
+} = require("../controllers/staff");
 
 const Hospital = require("../Models/Hospital");
 
@@ -52,15 +66,25 @@ router
   .put(protect, authorize("admin"), updateDepartment)
   .delete(protect, authorize("admin"), deleteDepartment);
 
-router.route("/:id/departements/:departementId/staff").get(protect, getStaff);
+router
+  .route("/:id/departements/:departementId/staff")
+  .get(protect, getStaff)
+  .post(protect, authorize("admin"), createStaff);
 router
   .route("/:id/departements/:departementId/staff/:staffId")
-  .post(protect, authorize("admin"), getStaff);
+  .get(protect, getStaffById)
+  .put(protect, authorize("admin"), updateStaff)
+  .delete(protect, authorize("admin"), deleteStaff);
+
 router
-  .route("/:id/departements/:departementId/staff/:staffId")
-  .put(protect, authorize("admin"), getStaff);
+  .route("/:id/departements/:departementId/patients")
+  .get(protect, getPatients)
+  .post(protect, authorize("admin"), createPatient);
+
 router
-  .route("/:id/departements/:departementId/staff/:staffId")
-  .delete(protect, authorize("admin"), getStaff);
+  .route("/:id/departements/:departementId/patients/:patientId")
+  .get(protect, getPatientById)
+  .put(protect, authorize("admin"), updatePatient)
+  .delete(protect, authorize("admin"), deletePatient);
 
 module.exports = router;

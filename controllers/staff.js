@@ -1,5 +1,6 @@
 // External imports
 const Departement = require("../Models/Departement");
+const Staff = require("../Models/Staff");
 const asyncHandler = require("../middleware/async");
 const ErrorResponse = require("../utils/errorResponse");
 
@@ -20,13 +21,23 @@ exports.getStaff = asyncHandler(async (req, res, next) => {
 // @route   get /api/v1/staff/:id
 // @access  public
 exports.getStaffById = asyncHandler(async (req, res, next) => {
-  const staff = await Staff.findById(req.params.id);
-  if (staff === null) {
+  const { departementId, id, staffId } = req.params;
+
+  const department = await Departement.findOne({
+    _id: departementId,
+    hospital: id,
+  }).populate({
+    path: "staff",
+    match: { _id: staffId },
+  });
+
+  if (!department || !department.staff || department.staff.length === 0) {
     return next(
-      new ErrorResponse(`Staff not found with id of ${req.params.id}`, 404)
+      new ErrorResponse(`Staff not found with id of ${staffId}`, 404)
     );
   }
-  res.status(200).send(staff);
+
+  res.status(200).send(department.staff);
 });
 
 // @desc  create staff

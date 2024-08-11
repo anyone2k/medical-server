@@ -1,5 +1,5 @@
 // External imports
-const Staff = require("../Models/Staff");
+const Departement = require("../Models/Departement");
 const asyncHandler = require("../middleware/async");
 const ErrorResponse = require("../utils/errorResponse");
 
@@ -7,7 +7,13 @@ const ErrorResponse = require("../utils/errorResponse");
 // @route   get /api/v1/staff
 // @access  public
 exports.getStaff = asyncHandler(async (req, res, next) => {
-  res.status(200).json(res.advancedResults);
+  // get all staff from the hospital use the following route "/:id/departements/:departementId/staff"
+  const staff = await Departement.find({
+    _id: req.params.departementId,
+    hospital: req.params.id,
+  }).populate("staff");
+
+  return res.status(200).send(staff[0].staff);
 });
 
 // @desc  get single staff

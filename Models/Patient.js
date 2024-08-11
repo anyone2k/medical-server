@@ -69,7 +69,9 @@ PatientSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-const patientSchema = mongoose.model("Patients", PatientSchema);
+// Check if the model already exists before defining it
+const Patient =
+  mongoose.models.Patient || mongoose.model("Patient", PatientSchema);
 
 // Ensure the unique index is created
 PatientSchema.on("index", (error) => {
@@ -78,4 +80,4 @@ PatientSchema.on("index", (error) => {
   }
 });
 
-module.exports = patientSchema;
+module.exports = Patient;

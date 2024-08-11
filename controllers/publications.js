@@ -2,7 +2,7 @@
 const Publication = require("../Models/Publication");
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
-const Patient = require("../Models/Patient");
+const Patient = require("../models/Patient");
 
 // // @desc  get all publications
 // // @route   get /api/v1/publications

@@ -33,7 +33,14 @@ exports.getDepartment = asyncHandler(async (req, res, next) => {
     );
   }
 
-  res.status(200).json({ success: true, data: department });
+  res
+    .status(200)
+    .json(
+      await Department.findById(req.params.departmentId)
+        .populate("headOfDepartement", "name email")
+        .populate("patients", "name email age")
+        .populate("staff", "name email role")
+    );
 });
 
 // @desc  create a department

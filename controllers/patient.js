@@ -8,8 +8,6 @@ const Department = require("../Models/Departement");
 exports.getPatients = asyncHandler(async (req, res, next) => {
   // get all patients from the hospital use the following route "/:id/departements/:departementId/staff"
   const department = await Department.findById(req.params.departmentId);
-  console.log(req.params.departmentId);
-  console.log(department);
   if (!department) {
     return next(
       new ErrorResponse(`Department not found with id of ${req.params.id}`, 404)

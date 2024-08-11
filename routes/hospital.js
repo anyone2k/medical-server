@@ -47,11 +47,15 @@ router
   .put(protect, authorize("admin"), updateDepartment)
   .delete(protect, authorize("admin"), deleteDepartment);
 
-router.route("/:id/departements/:departementId/staff").get(getStaff);
-router.route("/:id/departements/:departementId/staff/:staffId").post(getStaff);
-router.route("/:id/departements/:departementId/staff/:staffId").put(getStaff);
+router.route("/:id/departements/:departementId/staff").get(protect, getStaff);
 router
   .route("/:id/departements/:departementId/staff/:staffId")
-  .delete(getStaff);
+  .post(protect, authorize("admin"), getStaff);
+router
+  .route("/:id/departements/:departementId/staff/:staffId")
+  .put(protect, authorize("admin"), getStaff);
+router
+  .route("/:id/departements/:departementId/staff/:staffId")
+  .delete(protect, authorize("admin"), getStaff);
 
 module.exports = router;

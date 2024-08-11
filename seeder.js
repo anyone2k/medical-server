@@ -4,7 +4,10 @@ const mongoose = require("mongoose");
 const colors = require("colors");
 const dotenv = require("dotenv");
 const Publication = require("./Models/Publication");
-
+const Hospital = require("./Models/Hospital");
+const Department = require("./Models/Departement");
+const Staff = require("./Models/Staff");
+const Patient = require("./Models/Patient");
 // Load ENV Variables
 dotenv.config({ path: "./config/config.env" });
 
@@ -14,12 +17,28 @@ dotenv.config({ path: "./config/config.env" });
 const publications = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/publications.json`, "utf-8")
 );
+const hospitals = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/hospitals.json`, "utf-8")
+);
+const departements = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/departements.json`, "utf-8")
+);
+const staffs = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/staffs.json`, "utf-8")
+);
+const patients = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/patients.json`, "utf-8")
+);
 
 // Import Data Into Database
 const importData = async () => {
   try {
-    await Publication.create(publications);
-    console.log("Data Imported...".green.inverse);
+    // await Publication.create(publications);
+    // await Hospital.create(hospitals);
+    await Department.create(departements);
+    // await Staff.create(staffs);
+    // await Patient.create(patients);
+    await console.log("Data Imported...".green.inverse);
   } catch (error) {
     console.error(error);
   }

@@ -51,6 +51,9 @@ app.use(
 );
 
 // Routes
+const routesHospital = require("./routes/hospital");
+app.use(`${serverVersion}/hospitals`, routesHospital);
+
 const routesAuth = require("./routes/auth");
 app.use(`${serverVersion}/auth`, routesAuth);
 
@@ -59,9 +62,6 @@ app.use(`${serverVersion}/publications`, routesPublications);
 
 const routesMe = require("./routes/me");
 app.use(`${serverVersion}/me`, routesMe);
-
-const routesUsers = require("./routes/users");
-app.use(`${serverVersion}/users`, routesUsers);
 
 // Using the errorHandler middleware
 const errorHandler = require("./middleware/error");

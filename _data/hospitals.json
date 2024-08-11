@@ -1,0 +1,31 @@
+[
+    {
+      "name": "Hôpital Saint-Antoine",
+      "description": "Un hôpital universitaire de renom offrant des soins spécialisés.",
+      "location": "Paris, France",
+      "departments": [],
+      "createdAt": "2024-08-11T00:00:00Z"
+    },
+    {
+      "name": "Clinique Mont-Royal",
+      "description": "Une clinique privée offrant des soins de qualité avec un service personnalisé.",
+      "location": "Montréal, Canada",
+      "departments": [],
+      "createdAt": "2024-08-11T00:00:00Z"
+    },
+    {
+      "name": "Hôpital Central de Madrid",
+      "description": "Un hôpital général avec une large gamme de services médicaux.",
+      "location": "Madrid, Espagne",
+      "departments": [],
+      "createdAt": "2024-08-11T00:00:00Z"
+    },
+    {
+      "name": "Centre Hospitalier de Genève",
+      "description": "Un centre hospitalier offrant des soins de haute qualité avec des spécialistes renommés.",
+      "location": "Genève, Suisse",
+      "departments": [],
+      "createdAt": "2024-08-11T00:00:00Z"
+    }
+  ]
+  

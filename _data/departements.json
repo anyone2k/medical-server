@@ -1,0 +1,163 @@
+[
+    {
+      "name": "Cardiologie",
+      "description": "Spécialisé dans les soins cardiovasculaires et les traitements cardiaques.",
+      "headOfDepartement": "66b875e41d81c34facf7d701",
+      "staff": [
+        "66b875e41d81c34facf7d701", 
+        "66b875e41d81c34facf7d706",
+        "66b875e41d81c34facf7d70e"  
+      ],
+      "patients": [
+        "66b878faf73aa14040dc9097", 
+        "66b878faf73aa14040dc9095"  
+      ],
+      "hospital": "66b8716e99640d7a69aa2f8e"
+    },
+    {
+      "name": "Chirurgie Générale",
+      "description": "Département traitant des interventions chirurgicales générales.",
+      "headOfDepartement": "66b875e41d81c34facf7d701",
+      "staff": [
+        "66b875e41d81c34facf7d701", 
+        "66b875e41d81c34facf7d706", 
+        "66b875e41d81c34facf7d70e"  
+      ],
+      "patients": [
+        "66b878faf73aa14040dc9098" 
+      ],
+      "hospital": "66b8716e99640d7a69aa2f8e"
+    },
+    {
+      "name": "Pédiatrie",
+      "description": "Spécialisé dans les soins des enfants et des adolescents.",
+      "headOfDepartement": "66b875e41d81c34facf7d705",
+      "staff": [
+        "66b875e41d81c34facf7d705"  
+      ],
+      "patients": [
+        "66b878faf73aa14040dc909b" 
+      ],
+      "hospital": "66b8716e99640d7a69aa2f8e"
+    },
+    {
+      "name": "Urgences",
+      "description": "Département offrant des soins d'urgence 24 heures sur 24.",
+      "headOfDepartement": "66b875e41d81c34facf7d705",
+      "staff": [
+        "66b875e41d81c34facf7d705", 
+        "66b875e41d81c34facf7d712"  
+      ],
+      "patients": [
+        "66b878faf73aa14040dc9099" 
+      ],
+      "hospital": "66b8716e99640d7a69aa2f8e"
+    },
+    {
+      "name": "Orthopédie",
+      "description": "Traitement des troubles musculo-squelettiques.",
+      "headOfDepartement": "66b875e41d81c34facf7d70d",
+      "staff": [
+        "66b875e41d81c34facf7d70d"  
+      ],
+      "patients": [
+        "66b878faf73aa14040dc909f" 
+      ],
+      "hospital": "66b8716e99640d7a69aa2f8f"
+    },
+    {
+      "name": "Dermatologie",
+      "description": "Soins spécialisés pour les affections cutanées.",
+      "headOfDepartement": "66b875e41d81c34facf7d70d",
+      "staff": [
+        "66b875e41d81c34facf7d70d"  
+      ],
+      "patients": [
+        "66b878faf73aa14040dc909a",
+        "66b878faf73aa14040dc90a8" 
+      ],
+      "hospital": "66b8716e99640d7a69aa2f8f"
+    },
+    {
+      "name": "Oncologie",
+      "description": "Département spécialisé dans le traitement du cancer.",
+      "headOfDepartement": "66b875e41d81c34facf7d711",
+      "staff": [
+        "66b875e41d81c34facf7d711"  
+      ],
+      "patients": [
+        "66b878faf73aa14040dc90a0",
+        "66b878faf73aa14040dc909a"
+      ],
+      "hospital": "66b8716e99640d7a69aa2f8f"
+    },
+    {
+      "name": "Radiologie",
+      "description": "Imagerie médicale et diagnostics par rayons X.",
+      "headOfDepartement": "66b875e41d81c34facf7d711",
+      "staff": [
+        "66b875e41d81c34facf7d711"  
+      ],
+      "patients": [
+        "66b878faf73aa14040dc90a4" 
+      ],
+      "hospital": "66b8716e99640d7a69aa2f8f"
+    },
+    {
+      "name": "Gynécologie",
+      "description": "Soins médicaux et chirurgicaux pour les femmes.",
+      "headOfDepartement": "66b875e41d81c34facf7d709",
+      "staff": [
+        "66b875e41d81c34facf7d709"  
+      ],
+      "patients": [
+        "66b878faf73aa14040dc90a5","66b878faf73aa14040dc909c"
+      ],
+      "hospital": "66b8716e99640d7a69aa2f8c"
+    },
+    {
+      "name": "Neurologie",
+      "description": "Traitement des troubles neurologiques et du système nerveux.",
+      "headOfDepartement": "66b875e41d81c34facf7d709",
+      "staff": [
+        "66b875e41d81c34facf7d709"  
+      ],
+      "patients": [
+        "66b878faf73aa14040dc90a6" 
+      ],
+      "hospital": "66b8716e99640d7a69aa2f8c"
+    },
+    {
+      "name": "Gastroentérologie",
+      "description": "Traitement des troubles gastro-intestinaux.",
+      "headOfDepartement": "64b07f1f3f53b547dc9c1e51",
+      "staff": [],
+      "patients": [],
+      "hospital": "66b8716e99640d7a69aa2f8c"
+    },
+    {
+      "name": "Psychiatrie",
+      "description": "Soins spécialisés pour les troubles mentaux.",
+      "headOfDepartement": "66b875e41d81c34facf7d709",
+      "staff": [
+        "66b875e41d81c34facf7d709"  
+      ],
+      "patients": [
+        "66b878faf73aa14040dc90a2" 
+      ],
+      "hospital": "66b8716e99640d7a69aa2f8c"
+    },
+    {
+      "name": "Médecine Interne",
+      "description": "Traitement des maladies internes chroniques.",
+      "headOfDepartement": "66b875e41d81c34facf7d709",
+      "staff": [
+        "66b875e41d81c34facf7d709"  
+      ],
+      "patients": [
+        "66b878faf73aa14040dc90a3" 
+      ],
+      "hospital": "66b8716e99640d7a69aa2f8d"
+    }
+  ]
+  

@@ -1,4 +1,3 @@
-// create a publication schema for mongoose
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -7,13 +6,9 @@ const PublicationSchema = new Schema({
     type: String,
     required: [true, "Please add a title"],
   },
-  content: {
+  report: {
     type: String,
     required: [true, "Please add some content"],
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
   },
   sicknessType: {
     type: String,
@@ -23,16 +18,21 @@ const PublicationSchema = new Schema({
     type: [String],
     required: [true, "Please add a file link"],
   },
-  user: {
+  author: {
     type: Schema.Types.ObjectId,
-    ref: "MedicalUsers",
+    ref: "Staff",
+    required: true,
+  },
+  patient: {
+    type: Schema.Types.ObjectId,
+    ref: "Patient",
     required: true,
   },
   modifiedBy: [
     {
       doctor: {
         type: Schema.Types.ObjectId,
-        ref: "MedicalUsers",
+        ref: "Staff",
         required: true,
       },
       date: {
@@ -41,6 +41,10 @@ const PublicationSchema = new Schema({
       },
     },
   ],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model("Publication", PublicationSchema);

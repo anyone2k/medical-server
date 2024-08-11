@@ -2,7 +2,7 @@
 const Publication = require("../Models/Publication");
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
-const User = require("../Models/User");
+const Patient = require("../Models/Patient");
 
 // // @desc  get all publications
 // // @route   get /api/v1/publications
@@ -31,7 +31,7 @@ exports.getPublication = asyncHandler(async (req, res, next) => {
 // @route   post /api/v1/publications/:id (user id)
 // @access  private
 exports.createPublication = asyncHandler(async (req, res, next) => {
-  if (!req.params.id || !(await User.findById(req.params.id)))
+  if (!req.params.id || !(await Patient.findById(req.params.id)))
     return next(new ErrorResponse("User not found", 404));
   delete req.body.user;
   const publication = await Publication.create({

@@ -1,8 +1,3 @@
-// create the crude routes for the publication
-// using the auth.js as a reference in the routes folder
-//
-// create a publication schema for mongoose
-// use the following code as a reference
 //// External imports
 const express = require("express");
 
@@ -19,16 +14,13 @@ const {
 const advancedResults = require("../middleware/advancedResults");
 const Publication = require("../Models/Publication");
 
-// create the router
 const router = express.Router();
-
-// create the routes for the publications
 
 router
   .route("")
   .get(
     protect,
-    advancedResults(Publication, "user modifiedBy.doctor"),
+    advancedResults(Publication, "patient modifiedBy.doctor"),
     getPublications
   );
 

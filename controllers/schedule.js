@@ -51,19 +51,3 @@ exports.updateSchedule = async (req, res) => {
     });
   }
 };
-
-// Delete a schedule
-exports.deleteSchedule = async (req, res) => {
-  try {
-    await Schedule.findByIdAndDelete(req.params.scheduleId);
-    res.status(200).json({
-      success: true,
-      message: "Schedule deleted",
-    });
-  } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: error.message,
-    });
-  }
-};

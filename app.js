@@ -25,18 +25,6 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middlewares
-// Add a timeout middleware
-app.use((req, res, next) => {
-  req.setTimeout(7 * 1000, () => {
-    console.log("Request has timed out.".red);
-    res.status(408).send("Request has timed out.");
-  });
-  res.setTimeout(7 * 1000, () => {
-    console.log("Request has timed out.".red);
-    res.status(408).send("Request has timed out.");
-  });
-  next();
-});
 app.use(cors());
 app.use(express.json());
 app.use(helmet());
@@ -56,9 +44,6 @@ app.use(`${serverVersion}/hospitals`, routesHospital);
 
 const routesAuth = require("./routes/auth");
 app.use(`${serverVersion}/auth`, routesAuth);
-
-const routesPublications = require("./routes/publications");
-app.use(`${serverVersion}/publications`, routesPublications);
 
 const routesMe = require("./routes/me");
 app.use(`${serverVersion}/me`, routesMe);

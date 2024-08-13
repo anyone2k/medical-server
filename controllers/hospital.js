@@ -2,12 +2,28 @@
 const Hospital = require("../Models/Hospital");
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
-
+const { getDataByUser } = require("../utils/filtrationFunctions");
 // @desc  get all hospitals
 // @route   get /api/v1/hospitals
 // @access  public
 exports.getHospitals = asyncHandler(async (req, res, next) => {
-  res.status(200).json(res.advancedResults);
+  // create a return of all hospitals that the user is part of the staff
+  if (
+    req.user.role === "doctor" ||
+    req.user.role === "nurse" ||
+    req.user.role === "admin" ||
+    req.user.role === "receptionist"
+  ) {
+    const hospitals = await Hospital.find().populate("departments");
+    results = getDataByUser(hospitals, req.user._id);
+    return res.status(200).json({
+      success: true,
+      count: results.length,
+      data: results,
+    });
+  } else {
+    return res.status(200).json(res.advancedResults);
+  }
 });
 
 // @desc  get a hospital by id
@@ -15,7 +31,10 @@ exports.getHospitals = asyncHandler(async (req, res, next) => {
 // @access  public
 
 exports.getHospital = asyncHandler(async (req, res, next) => {
-  const hospital = await Hospital.findById(req.params.id);
+  const hospital = await Hospital.findById(req.params.id).populate(
+    "departments",
+    "_id name"
+  );
 
   if (!hospital) {
     return next(
@@ -51,19 +70,4 @@ exports.updateHospital = asyncHandler(async (req, res, next) => {
   }
 
   res.status(200).json({ success: true, data: hospital });
-});
-
-// @desc  delete a hospital
-// @route   delete /api/v1/hospitals/:id
-// @access  private
-exports.deleteHospital = asyncHandler(async (req, res, next) => {
-  const hospital = await Hospital.findByIdAndDelete(req.params.id);
-
-  if (!hospital) {
-    return next(
-      new ErrorResponse(`Hospital not found with id of ${req.params.id}`, 404)
-    );
-  }
-
-  res.status(200).json({ success: true, data: {} });
 });

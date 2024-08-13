@@ -73,18 +73,3 @@ exports.updateDepartment = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({ success: true, data: department });
 });
-
-// @desc  delete a department
-// @route   delete /api/v1/departments/:id
-// @access  private
-exports.deleteDepartment = asyncHandler(async (req, res, next) => {
-  const department = await Department.findByIdAndDelete(req.params.id);
-
-  if (!department) {
-    return next(
-      new ErrorResponse(`Department not found with id of ${req.params.id}`, 404)
-    );
-  }
-
-  res.status(200).json({ success: true, data: {} });
-});

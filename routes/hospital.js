@@ -6,14 +6,12 @@ const {
   getHospital,
   createHospital,
   updateHospital,
-  deleteHospital,
 } = require("../controllers/hospital");
 const {
   getDepartements,
   getDepartment,
   createDepartment,
   updateDepartment,
-  deleteDepartment,
 } = require("../controllers/departement");
 
 const {
@@ -21,7 +19,6 @@ const {
   getPatientById,
   createPatient,
   updatePatient,
-  deletePatient,
 } = require("../controllers/patient");
 
 const {
@@ -29,14 +26,18 @@ const {
   getStaffById,
   createStaff,
   updateStaff,
-  deleteStaff,
 } = require("../controllers/staff");
 
+const {
+  getPublications,
+  getPublicationsByDoctor,
+  getPublication,
+  createPublication,
+  updatePublication,
+  deletePublication,
+} = require("../controllers/publications");
+
 const Hospital = require("../Models/Hospital");
-
-const Departement = require("../Models/Departement");
-
-const Patient = require("../models/Patient");
 
 const router = express.Router({ mergeParams: true });
 
@@ -46,14 +47,13 @@ const { protect, authorize } = require("../middleware/auth");
 
 router
   .route("/")
-  .get(advancedResults(Hospital, "departments"), getHospitals)
+  .get(protect, getHospitals)
   .post(protect, authorize("admin"), createHospital);
 
 router
   .route("/:id")
   .get(getHospital)
-  .put(protect, authorize("admin"), updateHospital)
-  .delete(protect, authorize("admin"), deleteHospital);
+  .put(protect, authorize("admin"), updateHospital);
 
 router
   .route("/:id/departements")
@@ -63,8 +63,7 @@ router
 router
   .route("/:id/departements/:departmentId")
   .get(protect, getDepartment)
-  .put(protect, authorize("admin"), updateDepartment)
-  .delete(protect, authorize("admin"), deleteDepartment);
+  .put(protect, authorize("admin"), updateDepartment);
 
 router
   .route("/:id/departements/:departmentId/staff")
@@ -73,8 +72,12 @@ router
 router
   .route("/:id/departements/:departmentId/staff/:staffId")
   .get(protect, getStaffById)
-  .put(protect, authorize("admin"), updateStaff)
-  .delete(protect, authorize("admin"), deleteStaff);
+  .put(protect, authorize("admin"), updateStaff);
+
+router
+  .route("/:id/departements/:departmentId/staff/:staffId/publications")
+  .get(protect, getPublications)
+  .post(protect, authorize("admin"), createPublication);
 
 router
   .route("/:id/departements/:departmentId/patients")
@@ -84,7 +87,18 @@ router
 router
   .route("/:id/departements/:departmentId/patients/:patientId")
   .get(protect, getPatientById)
-  .put(protect, authorize("admin"), updatePatient)
-  .delete(protect, authorize("admin"), deletePatient);
+  .put(protect, authorize("admin"), updatePatient);
+
+router
+  .route("/:id/departements/:departmentId/patients/:patientId/publications")
+  .get(protect, getPublications)
+  .post(protect, authorize("admin"), createPublication);
+
+router
+  .route(
+    "/:id/departements/:departmentId/patients/:patientId/publications/:publicationId"
+  )
+  .get(protect, getPublication)
+  .put(protect, authorize("admin"), updatePublication);
 
 module.exports = router;

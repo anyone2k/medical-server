@@ -63,16 +63,3 @@ exports.updateStaff = asyncHandler(async (req, res, next) => {
   }
   res.status(200).send(staff);
 });
-
-// @desc  delete staff
-// @route   delete /api/v1/staff/:id
-// @access  private
-exports.deleteStaff = asyncHandler(async (req, res, next) => {
-  const staff = await Staff.findByIdAndDelete(req.params.id);
-  if (!staff) {
-    return next(
-      new ErrorResponse(`Staff not found with id of ${req.params.id}`, 404)
-    );
-  }
-  res.status(200).send({});
-});

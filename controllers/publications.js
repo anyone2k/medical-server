@@ -2,13 +2,14 @@
 const Publication = require("../Models/Publication");
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
-const Patient = require("../models/Patient");
+const Patient = require("../Models/Patient");
 
 // // @desc  get all publications
 // // @route   get /api/v1/publications
 // // @access  public
 exports.getPublications = asyncHandler(async (req, res, next) => {
-  return res.status(200).json(res.advancedResults);
+  const publications = await Publication.find({ author: req.user._id });
+  res.status(200).send(publications);
 });
 
 // @desc  get single publication
@@ -25,6 +26,26 @@ exports.getPublication = asyncHandler(async (req, res, next) => {
     );
   }
   res.status(200).send(publication);
+});
+
+// create a function for the following: getPublicationsByDoctor
+// @desc  get all publications by doctor
+// @route   get /api/v1/publications/:id
+// @access  public
+exports.getPublicationsByDoctor = asyncHandler(async (req, res, next) => {
+  const publications = await Publication.find({
+    author: req.params.id,
+    patient: req.params.patientId,
+  });
+  if (publications === null) {
+    return next(
+      new ErrorResponse(
+        `Publications not found with id of ${req.params.id}`,
+        404
+      )
+    );
+  }
+  res.status(200).send(publications);
 });
 
 // @desc  create publication
@@ -70,23 +91,4 @@ exports.updatePublication = asyncHandler(async (req, res, next) => {
     );
   }
   res.status(200).send(publication);
-});
-
-// @desc  delete publication
-// @route   delete /api/v1/publications/:id
-// @access  private
-exports.deletePublication = asyncHandler(async (req, res, next) => {
-  const publication = await Publication.findByIdAndDelete(req.params.id);
-  if (!publication) {
-    return next(
-      new ErrorResponse(
-        `Publication not found with id of ${req.params.id}`,
-        404
-      )
-    );
-  }
-  res.status(200).send({
-    success: true,
-    data: {},
-  });
 });

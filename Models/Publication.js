@@ -28,6 +28,10 @@ const PublicationSchema = new Schema({
     ref: "Patient",
     required: true,
   },
+  isClosed: {
+    type: Boolean,
+    default: false,
+  },
   modifiedBy: [
     {
       doctor: {

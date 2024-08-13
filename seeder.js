@@ -8,6 +8,7 @@ const Hospital = require("./Models/Hospital");
 const Department = require("./Models/Departement");
 const Staff = require("./Models/Staff");
 const Patient = require("./Models/Patient");
+const Schedule = require("./Models/Schedule");
 // Load ENV Variables
 dotenv.config({ path: "./config/config.env" });
 
@@ -29,16 +30,19 @@ const staffs = JSON.parse(
 const patients = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/patients.json`, "utf-8")
 );
+// const schedules = JSON.parse(
+//   fs.readFileSync(`${__dirname}/_data/schedueles.json`, "utf-8")
+// );
 
 // Import Data Into Database
 const importData = async () => {
   try {
-    // await Publication.create(publications);
+    await Publication.create(publications);
     // await Hospital.create(hospitals);
-    await Department.create(departements);
+    // await Department.create(departements);
     // await Staff.create(staffs);
     // await Patient.create(patients);
-    await console.log("Data Imported...".green.inverse);
+    // await Schedule.create(schedules);
   } catch (error) {
     console.error(error);
   }

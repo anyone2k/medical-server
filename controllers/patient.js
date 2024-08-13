@@ -2,6 +2,8 @@
 const asyncHandler = require("../middleware/async");
 const ErrorResponse = require("../utils/errorResponse");
 const Department = require("../Models/Departement");
+
+const Patient = require("../Models/Patient");
 // @desc  get all patients by hospital
 // @route   get /api/v1/patients
 // @access  public
@@ -10,7 +12,10 @@ exports.getPatients = asyncHandler(async (req, res, next) => {
   const department = await Department.findById(req.params.departmentId);
   if (!department) {
     return next(
-      new ErrorResponse(`Department not found with id of ${req.params.id}`, 404)
+      new ErrorResponse(
+        `Department not found with id of ${req.params.departmentId}`,
+        404
+      )
     );
   }
   const patients = await Department.findById(req.params.departmentId).populate(
@@ -24,10 +29,16 @@ exports.getPatients = asyncHandler(async (req, res, next) => {
 // @route   get /api/v1/patients/:id
 // @access  public
 exports.getPatientById = asyncHandler(async (req, res, next) => {
-  const patient = await Patient.findById(req.params.id);
+  const patient = await Patient.findById(
+    req.params.patientId,
+    "_id name email profilePicture"
+  );
   if (patient === null) {
     return next(
-      new ErrorResponse(`Patient not found with id of ${req.params.id}`, 404)
+      new ErrorResponse(
+        `Patient not found with id of ${req.params.patientId}`,
+        404
+      )
     );
   }
   res.status(200).send(patient);
@@ -49,19 +60,6 @@ exports.updatePatient = asyncHandler(async (req, res, next) => {
     new: true,
     runValidators: true,
   });
-  if (!patient) {
-    return next(
-      new ErrorResponse(`Patient not found with id of ${req.params.id}`, 404)
-    );
-  }
-  res.status(200).send(patient);
-});
-
-// @desc  delete patient
-// @route   delete /api/v1/patients/:id
-// @access  private
-exports.deletePatient = asyncHandler(async (req, res, next) => {
-  const patient = await Patient.findByIdAndDelete(req.params.id);
   if (!patient) {
     return next(
       new ErrorResponse(`Patient not found with id of ${req.params.id}`, 404)

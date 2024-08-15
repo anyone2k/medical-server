@@ -5,14 +5,13 @@ const Staff = require("../Models/Staff");
 const Patient = require("../Models/Patient");
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
-const {loginFunction} = require("../utils/userFunctions")
-
+const { loginFunction } = require("../utils/userFunctions");
 
 // @desc  create login
 // @route   post /api/v1/auth/staff/login
 // @access  public
 exports.postStaffLogin = asyncHandler(async (req, res, next) => {
-  results = await loginFunction(Staff, req)
+  results = await loginFunction(Staff, req);
   res.status(200).json(results);
 });
 
@@ -20,7 +19,7 @@ exports.postStaffLogin = asyncHandler(async (req, res, next) => {
 // @route   post /api/v1/auth/staff/login
 // @access  public
 exports.postPatientLogin = asyncHandler(async (req, res, next) => {
-  results = await loginFunction(Patient, req)
+  results = await loginFunction(Patient, req);
   res.status(200).json(results);
 });
 

@@ -42,6 +42,9 @@ app.use(
 const routesHospital = require("./routes/hospital");
 app.use(`${serverVersion}/hospitals`, routesHospital);
 
+const routesDoctor = require("./routes/doctor");
+app.use(`${serverVersion}/doctors`, routesDoctor);
+
 const routesAuth = require("./routes/auth");
 app.use(`${serverVersion}/auth`, routesAuth);
 

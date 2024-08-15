@@ -29,3 +29,66 @@ exports.loginFunction = async (user, req) => {
     refreshToken,
   };
 };
+
+exports.getRessources = async (model) => {
+  const result = await model.find();
+  return {
+    success: true,
+    data: result,
+  };
+};
+exports.getRessourceById = async (model, req) => {
+  const result = await model.findById(req.params.id);
+  if (!result) {
+    return next(
+      new ErrorResponse(`Resource not found with id of ${req.params.id}`, 404)
+    );
+  }
+  return {
+    success: true,
+    data: result,
+  };
+};
+exports.createRessource = async (model, req) => {
+  const result = await model.create(req.body);
+
+  return {
+    success: true,
+    data: result,
+  };
+};
+
+exports.updateById = async (model, req) => {
+  const result = await model.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!result) {
+    return next(
+      new ErrorResponse(`Resource not found with id of ${req.params.id}`, 404)
+    );
+  }
+
+  return {
+    success: true,
+    data: result,
+  };
+};
+
+exports.deleteById = async (model, req) => {
+  const result = await model.findByIdAndUpdate(req.params.id, {
+    isActive: false,
+  });
+
+  if (!result) {
+    return next(
+      new ErrorResponse(`Resource not found with id of ${req.params.id}`, 404)
+    );
+  }
+
+  return {
+    success: true,
+    data: {},
+  };
+};

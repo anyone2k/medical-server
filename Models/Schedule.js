@@ -12,7 +12,7 @@ const ScheduleSchema = new Schema({
           .model("Staff")
           .findById(value)
           .then((staff) => {
-            return staff && (staff.role === "doctor" || staff.role === "nurse");
+            return staff && staff.role === "doctor";
           });
       },
       message: "Only doctors and nurses can have a schedule.",

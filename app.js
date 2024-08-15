@@ -59,7 +59,6 @@ const server = app.listen(PORT, () => {
       .yellow.bold
   );
 });
-
 // Handling unhandled promise rejection
 process.on("unhandledRejection", (err, promise) => {
   console.log(`=> Error: ${err.message}\n`.red.underline);

@@ -29,7 +29,37 @@ exports.loginFunction = async (user, req) => {
     refreshToken,
   };
 };
+exports.registerFunction = async (user, req) => {
+  const result = await user.create(req.body);
 
+  // Generate tokens
+  const { accessToken, refreshToken } = await result.generateTokens();
+
+  // Return a json response
+  return {
+    success: true,
+    accessToken,
+    refreshToken,
+  };
+};
+exports.refreshTokenFunction = async (user, req) => {
+  if (!req.headers.refreshtoken) {
+    return next(new ErrorResponse("unauthorized request", 401));
+  }
+  const decoded = jwt.verify(
+    req.headers.refreshtoken,
+    process.env.REFRESH_TOKEN_SECRET
+  );
+  const user = await user.findById(decoded._id);
+  if (!user) {
+    return next(new ErrorResponse("Invalid refresh token", 401));
+  }
+
+  return {
+    success: true,
+    ...user.generateTokens(),
+  };
+};
 exports.getRessources = async (model) => {
   const result = await model.find();
   return {

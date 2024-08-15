@@ -3,10 +3,16 @@ const jwt = require("jsonwebtoken");
 // Internal Imports
 const Staff = require("../Models/Staff");
 const Patient = require("../Models/Patient");
+const Doctor = require("../Models/Doctor");
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
-const { loginFunction } = require("../utils/userFunctions");
+const {
+  loginFunction,
+  refreshTokenFunction,
+  registerFunction,
+} = require("../utils/userFunctions");
 
+// Staff Functions
 // @desc  create login
 // @route   post /api/v1/auth/staff/login
 // @access  public
@@ -14,66 +20,70 @@ exports.postStaffLogin = asyncHandler(async (req, res, next) => {
   results = await loginFunction(Staff, req);
   res.status(200).json(results);
 });
+// @desc  create register
+// @route   post /api/v1/auth/staff/register
+// @access  public
+exports.postStaffRegister = asyncHandler(async (req, res, next) => {
+  const result = await registerFunction(Staff, req);
+  // Send response
+  res.status(201).json(result);
+});
 
+// @desc  refresh-token
+// @route   post /api/v1/auth/staff/refresh-token
+// @access  public
+exports.staffRefreshAccessToken = asyncHandler(async (req, res, next) => {
+  const result = await refreshTokenFunction(Staff, req);
+  res.status(200).json(result);
+});
+
+// Patient Functions
 // @desc  create login
-// @route   post /api/v1/auth/staff/login
+// @route   post /api/v1/auth/patient/login
 // @access  public
 exports.postPatientLogin = asyncHandler(async (req, res, next) => {
   results = await loginFunction(Patient, req);
   res.status(200).json(results);
 });
-
 // @desc  create register
-// @route   post /api/v1/auth/register
+// @route   post /api/v1/auth/patient/register
 // @access  public
-exports.postRegister = asyncHandler(async (req, res, next) => {
-  let User;
-  if (req.headers.route === "staff") {
-    User = Staff;
-  } else {
-    User = Patient;
-  }
-  if (!req.body.email || !req.body.password) {
-    return next(new ErrorResponse("Please provide an email and password", 400));
-  }
-  // Create the user
-  const user = await User.create(req.body);
-
-  // Generate tokens
-  const { accessToken, refreshToken } = await user.generateTokens();
-
+exports.postPatientRegister = asyncHandler(async (req, res, next) => {
+  const result = await registerFunction(Patient, req);
   // Send response
-  res.status(201).json({
-    success: true,
-    accessToken,
-    refreshToken,
-  });
+  res.status(201).json(result);
 });
 
 // @desc  refresh-token
-// @route   post /api/v1/auth/refresh-token
+// @route   post /api/v1/auth/patient/refresh-token
 // @access  public
-exports.refreshAccessToken = asyncHandler(async (req, res, next) => {
-  let User;
-  if (req.headers.route === "staff") {
-    User = Staff;
-  } else {
-    User = Patient;
-  }
-  if (!req.headers.refreshtoken) {
-    return next(new ErrorResponse("unauthorized request", 401));
-  }
-  const decoded = jwt.verify(
-    req.headers.refreshtoken,
-    process.env.REFRESH_TOKEN_SECRET
-  );
-  const user = await User.findById(decoded._id);
-  if (!user) {
-    return next(new ErrorResponse("Invalid refresh token", 401));
-  }
+exports.patientRefreshAccessToken = asyncHandler(async (req, res, next) => {
+  const result = await refreshTokenFunction(Patient, req);
+  res.status(200).json(result);
+});
 
-  res.status(200).json({
-    success: true,
-    ...user.generateTokens(),
-  });
+// Doctor Functions
+
+// @desc  create login
+// @route   post /api/v1/auth/doctor/login
+// @access  public
+exports.postDoctorLogin = asyncHandler(async (req, res, next) => {
+  results = await loginFunction(Doctor, req);
+  res.status(200).json(results);
+});
+// @desc  create register
+// @route   post /api/v1/auth/doctor/register
+// @access  public
+exports.postDoctorRegister = asyncHandler(async (req, res, next) => {
+  const result = await registerFunction(Doctor, req);
+  // Send response
+  res.status(201).json(result);
+});
+
+// @desc  refresh-token
+// @route   post /api/v1/auth/doctor/refresh-token
+// @access  public
+exports.doctorRefreshAccessToken = asyncHandler(async (req, res, next) => {
+  const result = await refreshTokenFunction(Doctor, req);
+  res.status(200).json(result);
 });

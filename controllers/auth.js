@@ -5,42 +5,23 @@ const Staff = require("../Models/Staff");
 const Patient = require("../Models/Patient");
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
+const {loginFunction} = require("../utils/userFunctions")
+
 
 // @desc  create login
-// @route   post /api/v1/auth/login
+// @route   post /api/v1/auth/staff/login
 // @access  public
-exports.postLogin = asyncHandler(async (req, res, next) => {
-  let User;
-  if (req.headers.route === "staff") {
-    User = Staff;
-  } else {
-    User = Patient;
-  }
-  if (!req.body.email || !req.body.password)
-    // Check if email and password are provided
-    return next(new ErrorResponse("Please provide an email and password", 400));
+exports.postStaffLogin = asyncHandler(async (req, res, next) => {
+  results = await loginFunction(Staff, req)
+  res.status(200).json(results);
+});
 
-  // Check if user exists
-  const user = await User.findOne({ email: req.body.email }).select(
-    "+password"
-  );
-
-  // Check if user exists
-  if (!user) {
-    return next(new ErrorResponse("Invalid credentials", 401));
-  }
-  // Check if password is correct
-  if (!(await user.matchPassword(req.body.password))) {
-    return next(new ErrorResponse("Invalid credentials", 401));
-  }
-  // Generate tokens
-  const { accessToken, refreshToken } = await user.generateTokens();
-  // Send response
-  res.status(200).json({
-    success: true,
-    accessToken,
-    refreshToken,
-  });
+// @desc  create login
+// @route   post /api/v1/auth/staff/login
+// @access  public
+exports.postPatientLogin = asyncHandler(async (req, res, next) => {
+  results = await loginFunction(Patient, req)
+  res.status(200).json(results);
 });
 
 // @desc  create register

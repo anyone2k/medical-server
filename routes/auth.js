@@ -2,7 +2,8 @@
 const express = require("express");
 // Internal imports
 const {
-  postLogin,
+  postStaffLogin,
+  postPatientLogin,
   postRegister,
   refreshAccessToken,
 } = require("../controllers/auth");
@@ -17,12 +18,12 @@ router.route("/doctor/register");
 router.route("/doctor/refresh-token");
 
 // login & register for patient
-router.route("/patient/login").post(postLogin);
+router.route("/patient/login").post(postPatientLogin);
 router.route("/patient/register").post(postRegister);
 router.route("/patient/refresh-token").get(refreshAccessToken);
 
 // make routes for staff
-router.route("/staff/login").post(postLogin);
+router.route("/staff/login").post(postStaffLogin);
 router.route("/staff/register").post(protect, authorize("admin"), postRegister);
 router.route("/staff/refresh-token").get(refreshAccessToken);
 

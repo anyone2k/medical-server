@@ -50,14 +50,14 @@ exports.refreshTokenFunction = async (user, req) => {
     req.headers.refreshtoken,
     process.env.REFRESH_TOKEN_SECRET
   );
-  const user = await user.findById(decoded._id);
-  if (!user) {
+  const result = await user.findById(decoded._id);
+  if (!result) {
     return next(new ErrorResponse("Invalid refresh token", 401));
   }
 
   return {
     success: true,
-    ...user.generateTokens(),
+    ...result.generateTokens(),
   };
 };
 exports.getRessources = async (model) => {

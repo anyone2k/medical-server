@@ -2,10 +2,15 @@
 const express = require("express");
 // Internal imports
 const {
-  postStaffLogin,
   postPatientLogin,
-  postRegister,
-  refreshAccessToken,
+  postStaffLogin,
+  postDoctorLogin,
+  postStaffRegister,
+  postPatientRegister,
+  postDoctorRegister,
+  patientRefreshAccessToken,
+  staffRefreshAccessToken,
+  doctorRefreshAccessToken,
 } = require("../controllers/auth");
 const { protect, authorize } = require("../middleware/auth");
 
@@ -13,19 +18,22 @@ const router = express.Router();
 
 // login & register for doctors
 
-router.route("/doctor/login");
-router.route("/doctor/register");
-router.route("/doctor/refresh-token");
+router.route("/doctor/login").post(postDoctorLogin);
+router
+  .route("/doctor/register")
+  .post(protect, authorize("admin"), postDoctorRegister);
+router.route("/doctor/refresh-token").post(doctorRefreshAccessToken);
 
 // login & register for patient
 router.route("/patient/login").post(postPatientLogin);
-router.route("/patient/register").post(postRegister);
-router.route("/patient/refresh-token").get(refreshAccessToken);
+router.route("/patient/register").post(postPatientRegister);
+router.route("/patient/refresh-token").get(patientRefreshAccessToken);
 
 // make routes for staff
 router.route("/staff/login").post(postStaffLogin);
-router.route("/staff/register").post(protect, authorize("admin"), postRegister);
-router.route("/staff/refresh-token").get(refreshAccessToken);
-
+router
+  .route("/staff/register")
+  .post(protect, authorize("admin"), postStaffRegister);
+router.route("/staff/refresh-token").get(staffRefreshAccessToken);
 
 module.exports = router;

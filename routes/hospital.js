@@ -48,17 +48,17 @@ const { protect, authorize, staffProtect } = require("../middleware/auth");
 
 router
   .route("/")
-  .get( getHospitals)
-  .post( createHospital);
+  .get( staffProtect,authorize("admin"),getHospitals)
+  .post(staffProtect,authorize("admin"), createHospital);
 
 router
   .route("/:id")
-  .get(getHospital)
-  .put(protect, authorize("admin"), updateHospital);
+  .get(staffProtect,authorize("admin"), getHospital)
+  .put(staffProtect,authorize("admin"),  updateHospital);
 
   router
   .route("/:id/doctors")
-  .get( getDoctorsByHospitalId); 
+  .get( staffProtect,authorize("admin"), getDoctorsByHospitalId); 
 
 router
   .route("/:id/departements")

@@ -70,18 +70,17 @@ exports.getRessources = async (model) => {
     data: result,
   };
 };
-exports.getRessourceById = async (model, req, next) => {
+exports.getRessourceById = async (model, req) => {
   const result = await model.findById(req.params.id);
   if (!result) {
-    return next(
-      new ErrorResponse(`Resource not found with id of ${req.params.id}`, 404)
-    );
+    throw new ErrorResponse(`Resource not found with id of ${req.params.id}`, 404);
   }
   return {
     success: true,
     data: result,
   };
 };
+
 exports.createRessource = async (model, req, next) => {
   const result = await model.create(req.body);
 

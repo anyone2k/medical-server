@@ -24,31 +24,29 @@ exports.staffProtect = async (req, res, next) => {
       .send("Not authorized to access this route / Invalid Token");
   }
 };
-exports.protect = (user_type) => {
-  return async (req, res, next) => {
-    let user;
-    const tokenDecoded = decodeToken(req, res);
+exports.protect = async (req, res, next) => {
+  let user;
+  const tokenDecoded = decodeToken(req, res);
 
-    try {
-      user = await Staff.findOne({ _id: tokenDecoded._id });
-      user = await Patient.findOne({ _id: tokenDecoded._id });
-      user = await Doctor.findOne({ _id: tokenDecoded._id });
+  try {
+    user = await Staff.findOne({ _id: tokenDecoded._id });
+    user = await Patient.findOne({ _id: tokenDecoded._id });
+    user = await Doctor.findOne({ _id: tokenDecoded._id });
 
-      if (!user) {
-        return res
-          .status(401)
-          .send("Not authorized to access this route / Invalid Token");
-      }
-      req.user = user;
-      constole.log("User", user);
-      next();
-    } catch (error) {
+    if (!user) {
       return res
         .status(401)
         .send("Not authorized to access this route / Invalid Token");
     }
+    req.user = user;
+    constole.log("User", user);
     next();
-  };
+  } catch (error) {
+    return res
+      .status(401)
+      .send("Not authorized to access this route / Invalid Token");
+  }
+  next();
 };
 
 exports.isDoctor = asyncHandler(async (req, res, next) => {

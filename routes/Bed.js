@@ -2,21 +2,24 @@
 const express = require("express");
 
 const {
-    getBeds,
-    getBed,
-    createBed,
-    updateBed,
-    deleteBed,
+  getBeds,
+  getBed,
+  createBed,
+  updateBed,
+  deleteBed,
 } = require("../controllers/bed");
-const { protect, authorize } = require("../middleware/auth");
+const { staffProtect, authorize } = require("../middleware/auth");
 
 const router = express.Router();
 
-router.route("/").get(getBeds).post(protect, createBed);
+router
+  .route("/")
+  .get(getBeds)
+  .post(staffProtect, authorize(["admin", "receptionist"]), createBed);
 router
   .route("/:id")
-  .get(protect, getBed)
-  .put(protect, authorize("admin"), updateBed)
-  .delete(protect, authorize("admin"), deleteBed);
+  .get(staffProtect, getBed)
+  .put(staffProtect, authorize(["admin", "receptionist"]), updateBed)
+  .delete(staffProtect, authorize(["admin", "receptionist"]), deleteBed);
 
 module.exports = router;

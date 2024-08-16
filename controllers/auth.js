@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const Staff = require("../Models/Staff");
 const Patient = require("../Models/Patient");
 const Doctor = require("../Models/Doctor");
-const ErrorResponse = require("../utils/errorResponse");
+
 const asyncHandler = require("../middleware/async");
 const {
   loginFunction,

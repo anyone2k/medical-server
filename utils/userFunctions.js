@@ -1,3 +1,5 @@
+const ErrorResponse = require("../utils/errorResponse");
+
 exports.loginFunction = async (user, req, next) => {
   const { email, password } = req.body;
   if (!email || !password)

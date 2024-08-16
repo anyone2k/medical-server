@@ -48,62 +48,16 @@ const { protect, authorize, staffProtect } = require("../middleware/auth");
 
 router
   .route("/")
-  .get( staffProtect,authorize("admin"),getHospitals)
-  .post(staffProtect,authorize("admin"), createHospital);
+  .get(staffProtect, authorize("admin"), getHospitals)
+  .post(staffProtect, authorize("admin"), createHospital);
 
 router
   .route("/:id")
-  .get(staffProtect,authorize("admin"), getHospital)
-  .put(staffProtect,authorize("admin"),  updateHospital);
+  .get(staffProtect, authorize("admin"), getHospital)
+  .put(staffProtect, authorize("admin"), updateHospital);
 
-  router
+router
   .route("/:id/doctors")
-  .get( staffProtect,authorize("admin"), getDoctorsByHospitalId); 
-
-router
-  .route("/:id/departements")
-  .get(protect, getDepartements)
-  .post(protect, authorize("admin"), createDepartment);
-
-router
-  .route("/:id/departements/:departmentId")
-  .get(protect, getDepartment)
-  .put(protect, authorize("admin"), updateDepartment);
-
-router
-  .route("/:id/departements/:departmentId/staff")
-  .get(protect, getStaff)
-  .post(protect, authorize("admin"), createStaff);
-router
-  .route("/:id/departements/:departmentId/staff/:staffId")
-  .get(protect, getStaffById)
-  .put(protect, authorize("admin"), updateStaff);
-
-router
-  .route("/:id/departements/:departmentId/staff/:staffId/publications")
-  .get(protect, getPublications)
-  .post(protect, authorize("admin"), createPublication);
-
-router
-  .route("/:id/departements/:departmentId/patients")
-  .get(protect, getPatients)
-  .post(protect, authorize("admin"), createPatient);
-
-router
-  .route("/:id/departements/:departmentId/patients/:patientId")
-  .get(protect, getPatientById)
-  .put(protect, authorize("admin"), updatePatient);
-
-router
-  .route("/:id/departements/:departmentId/patients/:patientId/publications")
-  .get(protect, getPublications)
-  .post(protect, authorize("admin"), createPublication);
-
-router
-  .route(
-    "/:id/departements/:departmentId/patients/:patientId/publications/:publicationId"
-  )
-  .get(protect, getPublication)
-  .put(protect, authorize("admin"), updatePublication);
+  .get(staffProtect, authorize("admin"), getDoctorsByHospitalId);
 
 module.exports = router;

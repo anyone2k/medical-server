@@ -51,6 +51,9 @@ app.use(`${serverVersion}/auth`, routesAuth);
 const routesMe = require("./routes/me");
 app.use(`${serverVersion}/me`, routesMe);
 
+const routesBed = require("./routes/bed");
+app.use(`${serverVersion}/bed`, routesBed)
+
 // Using the errorHandler middleware
 const errorHandler = require("./middleware/error");
 app.use(errorHandler);

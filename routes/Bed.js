@@ -7,7 +7,7 @@ const {
     createBed,
     updateBed,
     deleteBed,
-} = require("../controllers/Bed");
+} = require("../controllers/bed");
 const { protect, authorize } = require("../middleware/auth");
 
 const router = express.Router();

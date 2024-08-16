@@ -21,7 +21,7 @@ exports.getDoctors = asyncHandler(async (req, res, next) => {
 // @desc  Get single doctor
 // @route   GET /api/v1/doctors/:id
 // @access  public
-exports.getDoctor = asyncHandler(async (req, res, next) => {
+exports.getDoctor = asyncHandler(async (req, res) => {
   const result = await getRessourceById(Doctor, req);
   res.status(200).json(result);
 });

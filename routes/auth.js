@@ -41,9 +41,7 @@ router
 router.route("/staff/refresh-token").get(staffRefreshAccessToken);
 
 //register for beds
-router
-  .route("/bed/register")
-  .post(staffProtect, authorize("admin","receptionist"), postBedRegister);
+
 
 
 module.exports = router;

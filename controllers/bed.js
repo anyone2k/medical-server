@@ -22,7 +22,7 @@ exports.getBeds = asyncHandler(async (req, res, next) => {
 // @route   GET /api/v1/bed/:id
 // @access  public
 exports.getBed = asyncHandler(async (req, res, next) => {
-  const result = await getRessourceById(Bed, req);
+  const result = await getRessourceById(Bed, req,next);
   res.status(200).json(result);
 });
 
@@ -38,7 +38,7 @@ exports.createBed = asyncHandler(async (req, res, next) => {
 // @route   PUT /api/v1/bed/:id
 // @access  private
 exports.updateBed = asyncHandler(async (req, res, next) => {
-  const result = await updateById(Bed, req);
+  const result = await updateById(Bed, req, next);
   res.status(200).json(result);
 });
 
@@ -46,6 +46,6 @@ exports.updateBed = asyncHandler(async (req, res, next) => {
 // @route   DELETE /api/v1/beds/:id
 // @access  private
 exports.deleteBed = asyncHandler(async (req, res, next) => {
-  const result = await deleteById(Bed, req);
+  const result = await deleteById(Bed, req, next);
   res.status(204).json(result);
 });

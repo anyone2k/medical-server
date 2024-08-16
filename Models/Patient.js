@@ -25,10 +25,31 @@ const PatientSchema = new mongoose.Schema(
       type: Date,
       trim: true,
     },
+    phone_number:{
+      type:String,
+      required:[true, "Please provide a phone number :"],
+    },
+    emergency_contact:{
+      type:String,
+      required:[true, "Please provide a emergency contact :"],
+    },
+
     profilePicture: {
       type: String,
       default: "no-photo.jpg",
     },
+    bed: 
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Bed",
+        required: true,
+      },
+      medical_file: 
+      {
+        type: Schema.Types.ObjectId,
+        ref: "MedicalFile",
+        required: true,
+      },
   },
   { timestamps: true }
 );

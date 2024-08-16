@@ -38,7 +38,7 @@ const DoctorSchema = new mongoose.Schema({
       name: {
         type: String,
         enum: ["dentist", "surgeon", "general"],
-        default: "doctor",
+        default: "general",
       },
       field: {
         type: String,

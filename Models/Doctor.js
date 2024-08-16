@@ -107,10 +107,27 @@ DoctorSchema.pre("save", async function (next) {
 });
 
 // Sign JWT and return
-DoctorSchema.methods.generateToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE,
-  });
+StaffSchema.methods.generateTokens = function () {
+  return {
+    accessToken: jwt.sign(
+      {
+        _id: this._id,
+      },
+      process.env.ACCESS_TOKEN_SECRET,
+      {
+        expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+      }
+    ),
+    refreshToken: jwt.sign(
+      {
+        _id: this._id,
+      },
+      process.env.REFRESH_TOKEN_SECRET,
+      {
+        expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
+      }
+    ),
+  };
 };
 
 // Match user entered password to hashed password in database

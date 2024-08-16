@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const validator = require("validator");
+const Schema = mongoose.Schema;
 
-const PatientSchema = new mongoose.Schema(
+const PatientSchema = new Schema(
   {
     name: {
       type: String,
@@ -38,18 +39,20 @@ const PatientSchema = new mongoose.Schema(
       type: String,
       default: "no-photo.jpg",
     },
-    bed: 
+    bed: [
       {
         type: Schema.Types.ObjectId,
         ref: "Bed",
         required: true,
       },
-      medical_file: 
+    ],
+    medicalfile: [
       {
-        type: Schema.Types.ObjectId,
+       type: Schema.Types.ObjectId,
         ref: "MedicalFile",
         required: true,
       },
+    ],
   },
   { timestamps: true }
 );

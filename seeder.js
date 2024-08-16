@@ -7,7 +7,7 @@ const dotenv = require("dotenv");
 // const Hospital = require("./Models/Hospital");
 // const Department = require("./Models/Departement");
 // const Staff = require("./Models/Staff");
-// const Patient = require("./models/Patient");
+ //const Patient = require("./models/Patient");
 // const Schedule = require("./Models/Schedule");
 //const Doctor = require("./Models/Doctor");
 // Load ENV Variables

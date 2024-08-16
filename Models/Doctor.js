@@ -107,7 +107,7 @@ DoctorSchema.pre("save", async function (next) {
 });
 
 // Sign JWT and return
-StaffSchema.methods.generateTokens = function () {
+DoctorSchema.methods.generateTokens = function () {
   return {
     accessToken: jwt.sign(
       {

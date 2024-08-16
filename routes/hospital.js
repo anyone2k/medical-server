@@ -44,7 +44,7 @@ const router = express.Router({ mergeParams: true });
 
 const advancedResults = require("../middleware/advancedResults");
 
-const { protect, authorize, staffProtect } = require("../middleware/auth");
+const { authorize, staffProtect } = require("../middleware/auth");
 
 router
   .route("/")

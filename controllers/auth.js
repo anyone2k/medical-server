@@ -3,12 +3,14 @@
 const Staff = require("../Models/Staff");
 const Patient = require("../Models/Patient");
 const Doctor = require("../Models/Doctor");
+const Bed = require("../Models/Bed");
 
 const asyncHandler = require("../middleware/async");
 const {
   loginFunction,
   refreshTokenFunction,
   registerFunction,
+  createRessource,
 } = require("../utils/userFunctions");
 
 // Staff Functions
@@ -85,4 +87,12 @@ exports.postDoctorRegister = asyncHandler(async (req, res, next) => {
 exports.doctorRefreshAccessToken = asyncHandler(async (req, res, next) => {
   const result = await refreshTokenFunction(Doctor, req, next);
   res.status(200).json(result);
+});
+
+exports.postBedRegister = asyncHandler(async (req, res, next) => {
+  
+  const result = await createRessource(Bed, req, next);
+
+  
+  res.status(201).json(result);
 });

@@ -8,6 +8,7 @@ const {
   postStaffRegister,
   postPatientRegister,
   postDoctorRegister,
+  postBedRegister,
   patientRefreshAccessToken,
   staffRefreshAccessToken,
   doctorRefreshAccessToken,
@@ -38,5 +39,11 @@ router
   .route("/staff/register")
   .post(staffProtect, authorize("admin"), postStaffRegister);
 router.route("/staff/refresh-token").get(staffRefreshAccessToken);
+
+//register for beds
+router
+  .route("/bed/register")
+  .post(staffProtect, authorize("admin","receptionist"), postPatientRegister);
+router.route("/patient/refresh-token").get(patientRefreshAccessToken);
 
 module.exports = router;

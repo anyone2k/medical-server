@@ -49,3 +49,5 @@ exports.deleteDoctor = asyncHandler(async (req, res, next) => {
   const result = await deleteById(Doctor, req);
   res.status(204).json(result);
 });
+
+

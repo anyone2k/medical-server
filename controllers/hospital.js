@@ -1,5 +1,6 @@
 // External imports
 const Hospital = require("../Models/Hospital");
+const Doctor = require("../Models/Doctor");
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
 const { getDataByUser } = require("../utils/filtrationFunctions");
@@ -7,6 +8,8 @@ const { getDataByUser } = require("../utils/filtrationFunctions");
 // @route   get /api/v1/hospitals
 // @access  public
 exports.getHospitals = asyncHandler(async (req, res, next) => {
+  
+
   // create a return of all hospitals that the user is part of the staff
   if (
     req.user.role === "doctor" ||
@@ -16,6 +19,7 @@ exports.getHospitals = asyncHandler(async (req, res, next) => {
   ) {
     const hospitals = await Hospital.find().populate("departments");
     results = getDataByUser(hospitals, req.user._id);
+    console.log(results);
     return res.status(200).json({
       success: true,
       count: results.length,
@@ -25,7 +29,27 @@ exports.getHospitals = asyncHandler(async (req, res, next) => {
     return res.status(200).json(res.advancedResults);
   }
 });
+// @desc  Get all doctors by hospital ID
+// @route   GET /api/v1/hospitals/:hospitalId/doctors
+// @access  public
+exports.getDoctorsByHospitalId = asyncHandler(async (req, res, next) => {
 
+  const doctors = await Doctor.find({ hospital: req.params.hospitalId }).populate("hospital", "name");
+
+ 
+  if (!doctors || doctors.length === 0) {
+    return next(
+      new ErrorResponse(`No doctors found for hospital with id of ${req.params.hospitalId}`, 404)
+    );
+  }
+
+  // Réponse avec les docteurs trouvés
+  res.status(200).json({
+    success: true,
+    count: doctors.length,
+    data: doctors,
+  });
+});
 // @desc  get a hospital by id
 // @route   get /api/v1/hospitals/:id
 // @access  public

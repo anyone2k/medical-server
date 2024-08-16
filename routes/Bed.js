@@ -15,11 +15,11 @@ const router = express.Router();
 router
   .route("/")
   .get(getBeds)
-  .post(staffProtect, authorize(["admin", "receptionist"]), createBed);
+  .post(staffProtect, authorize("admin", "receptionist"), createBed);
 router
   .route("/:id")
   .get(staffProtect, getBed)
-  .put(staffProtect, authorize(["admin", "receptionist"]), updateBed)
-  .delete(staffProtect, authorize(["admin", "receptionist"]), deleteBed);
+  .put(staffProtect, authorize("admin", "receptionist"), updateBed)
+  .delete(staffProtect, authorize("admin", "receptionist"), deleteBed);
 
 module.exports = router;

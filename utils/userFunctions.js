@@ -1,3 +1,4 @@
+const { token } = require("morgan");
 const ErrorResponse = require("../utils/errorResponse");
 const jwt = require("jsonwebtoken");
 exports.loginFunction = async (user, req, next) => {
@@ -123,4 +124,24 @@ exports.deleteById = async (model, req, next) => {
     success: true,
     data: {},
   };
+};
+
+exports.decodeToken = (req, res) => {
+  let token = req.headers.authorization;
+
+  if (token === undefined) {
+    return res
+      .status(401)
+      .send("Not authorized to access this route / Invalid Token");
+  }
+
+  if (!token.startsWith("Bearer")) {
+    return res
+      .status(401)
+      .send("Not authorized to access this route / Invalid Token");
+  }
+
+  token = token.split(" ")[1];
+  const tokenDecoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+  return tokenDecoded;
 };

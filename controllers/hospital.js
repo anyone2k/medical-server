@@ -86,10 +86,7 @@ exports.createHospital = asyncHandler(async (req, res, next) => {
 // @route   put /api/v1/hospitals/:id
 // @access  private
 exports.updateHospital = asyncHandler(async (req, res, next) => {
-  const hospital = await Hospital.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-  });
+  let hospital = await Hospital.findById(req.params.id);
 
   if (!hospital) {
     return next(
@@ -97,5 +94,20 @@ exports.updateHospital = asyncHandler(async (req, res, next) => {
     );
   }
 
-  res.status(200).json({ success: true, data: hospital });
+  // Mettre à jour les champs manuellement
+  hospital = Object.assign(hospital, req.body);
+
+  try {
+    await hospital.save();
+    res.status(200).json({
+      success: true,
+      data: hospital,
+    });
+  } catch (error) {
+    return next(new ErrorResponse(error.message, 400));
+  }
 });
+
+
+
+

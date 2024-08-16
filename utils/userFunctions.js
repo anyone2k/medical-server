@@ -1,4 +1,4 @@
-exports.loginFunction = async (user, req) => {
+exports.loginFunction = async (user, req, next) => {
   const { email, password } = req.body;
   if (!email || !password)
     // Check if email and password are provided
@@ -29,7 +29,7 @@ exports.loginFunction = async (user, req) => {
     refreshToken,
   };
 };
-exports.registerFunction = async (user, req) => {
+exports.registerFunction = async (user, req, next) => {
   const result = await user.create(req.body);
 
   // Generate tokens
@@ -67,7 +67,7 @@ exports.getRessources = async (model) => {
     data: result,
   };
 };
-exports.getRessourceById = async (model, req) => {
+exports.getRessourceById = async (model, req, next) => {
   const result = await model.findById(req.params.id);
   if (!result) {
     return next(
@@ -79,7 +79,7 @@ exports.getRessourceById = async (model, req) => {
     data: result,
   };
 };
-exports.createRessource = async (model, req) => {
+exports.createRessource = async (model, req, next) => {
   const result = await model.create(req.body);
 
   return {
@@ -88,7 +88,7 @@ exports.createRessource = async (model, req) => {
   };
 };
 
-exports.updateById = async (model, req) => {
+exports.updateById = async (model, req, next) => {
   const result = await model.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
@@ -106,7 +106,7 @@ exports.updateById = async (model, req) => {
   };
 };
 
-exports.deleteById = async (model, req) => {
+exports.deleteById = async (model, req, next) => {
   const result = await model.findByIdAndUpdate(req.params.id, {
     isActive: false,
   });

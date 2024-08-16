@@ -7,6 +7,7 @@ const {
   createHospital,
   updateHospital,
   getDoctorsByHospitalId,
+  getDepartmentsByHospitalId,
 } = require("../controllers/hospital");
 const {
   getDepartements,
@@ -59,5 +60,9 @@ router
 router
   .route("/:id/doctors")
   .get(staffProtect, authorize("admin"), getDoctorsByHospitalId);
+
+  router
+  .route("/:id/department")
+  .get(staffProtect, authorize("admin"), getDepartmentsByHospitalId );
 
 module.exports = router;

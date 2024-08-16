@@ -54,6 +54,9 @@ app.use(`${serverVersion}/me`, routesMe);
 const routesBed = require("./routes/bed");
 app.use(`${serverVersion}/bed`, routesBed);
 
+const routesDepartement = require("./routes/departement");
+app.use(`${serverVersion}/departement`, routesDepartement);
+
 // Using the errorHandler middleware
 const errorHandler = require("./middleware/error");
 app.use(errorHandler);

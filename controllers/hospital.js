@@ -51,6 +51,37 @@ exports.getDoctorsByHospitalId = asyncHandler(async (req, res, next) => {
   });
 });
 
+// @desc  Get all departments by hospital ID
+// @route   GET /api/v1/hospitals/:hospitalId/department
+// @access  public
+exports.getDepartmentsByHospitalId = asyncHandler(async (req, res, next) => {
+  // Trouver l'hôpital par son ID et peupler les docteurs associés
+  const hospital = await Hospital.findById(req.params.id).populate('departements');
+
+  // Vérifier si l'hôpital existe
+  if (!hospital) {
+    return next(
+      new ErrorResponse(`Hospital not found with id of ${req.params.id}`, 404)
+    );
+  }
+
+  // Vérifier si des departements sont associés à cet hôpital
+  const departements = hospital.departement ;
+
+  if (!departements || departements.length === 0) {
+    return next(
+      new ErrorResponse(`No departments found for hospital with id of ${req.params.id}`, 404)
+    );
+  }
+
+  // Réponse avec les departements trouvés
+  res.status(200).json({
+    success: true,
+    count: departements.length,
+    data: departements,
+  });
+});
+
 // @desc  get a hospital by id
 // @route   get /api/v1/hospitals/:id
 // @access  public

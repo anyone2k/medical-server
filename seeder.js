@@ -5,7 +5,7 @@ const colors = require("colors");
 const dotenv = require("dotenv");
 // const Publication = require("./Models/Publication");
 // const Hospital = require("./Models/Hospital");
-// const Department = require("./Models/Departement");
+const Department = require("./Models/Departement");
 // const Staff = require("./Models/Staff");
  //const Patient = require("./models/Patient");
 // const Schedule = require("./Models/Schedule");
@@ -44,7 +44,7 @@ const importData = async () => {
    // await Doctor.create(doctors);
     // await Publication.create(publications);
      //await Hospital.create(hospitals);
-    // await Department.create(departements);
+    await Department.create(departements);
     // await Staff.create(staffs);
     // await Patient.create(patients);
     // await Schedule.create(schedules);

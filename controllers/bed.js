@@ -29,7 +29,7 @@ exports.getBed = asyncHandler(async (req, res, next) => {
 // @desc  Create new Bed
 // @route   POST /api/v1/bed
 // @access  private
-exports.createBed = asyncHandler(async (req, res, next) => {
+exports.createBed = asyncHandler(async (req, res) => {
   const result = await createRessource(Bed, req);
   res.status(201).json(result);
 });

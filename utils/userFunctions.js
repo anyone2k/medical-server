@@ -1,5 +1,5 @@
 const ErrorResponse = require("../utils/errorResponse");
-
+const jwt = require("jsonwebtoken");
 exports.loginFunction = async (user, req, next) => {
   const { email, password } = req.body;
   if (!email || !password)

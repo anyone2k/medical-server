@@ -26,7 +26,7 @@ router.route("/doctor/refresh-token").post(doctorRefreshAccessToken);
 
 // login & register for patient
 router.route("/patient/login").post(postPatientLogin);
-router.route("/patient/register").post(postPatientRegister);
+router.route("/patient/register").post(protect, authorize("admin"),postPatientRegister);
 router.route("/patient/refresh-token").get(patientRefreshAccessToken);
 
 // make routes for staff

@@ -24,13 +24,22 @@ exports.getHospitals = asyncHandler(async (req, res, next) => {
 // @route   GET /api/v1/hospitals/:hospitalId/doctors
 // @access  public
 exports.getDoctorsByHospitalId = asyncHandler(async (req, res, next) => {
+  // Trouver l'hôpital par son ID et peupler les docteurs associés
+  const hospital = await Hospital.findById(req.params.id).populate('doctors');
 
-  const doctors = await Doctor.find({ hospital: req.params.hospitalId }).populate("hospital", "name");
+  // Vérifier si l'hôpital existe
+  if (!hospital) {
+    return next(
+      new ErrorResponse(`Hospital not found with id of ${req.params.id}`, 404)
+    );
+  }
 
- 
+  // Vérifier si des docteurs sont associés à cet hôpital
+  const doctors = hospital.doctors;
+
   if (!doctors || doctors.length === 0) {
     return next(
-      new ErrorResponse(`No doctors found for hospital with id of ${req.params.hospitalId}`, 404)
+      new ErrorResponse(`No doctors found for hospital with id of ${req.params.id}`, 404)
     );
   }
 
@@ -41,24 +50,28 @@ exports.getDoctorsByHospitalId = asyncHandler(async (req, res, next) => {
     data: doctors,
   });
 });
+
 // @desc  get a hospital by id
 // @route   get /api/v1/hospitals/:id
 // @access  public
 
 exports.getHospital = asyncHandler(async (req, res, next) => {
-  const hospital = await Hospital.findById(req.params.id).populate(
-    "departments",
-    "_id name"
-  );
+  const hospital = await Hospital.findById(req.params.id)
+    .populate("doctors", "full_name specialization") 
+    .populate("patients", "first_name last_name")    
+    .populate("staff", "first_name last_name role"); 
 
+  // Vérifie si l'hôpital existe
   if (!hospital) {
     return next(
       new ErrorResponse(`Hospital not found with id of ${req.params.id}`, 404)
     );
   }
 
+  // Renvoie les données de l'hôpital
   res.status(200).json({ success: true, data: hospital });
 });
+
 
 // @desc  create a hospital
 // @route   post /api/v1/hospitals

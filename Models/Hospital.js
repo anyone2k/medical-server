@@ -6,10 +6,11 @@ const HospitalSchema = new Schema({
     type: String,
     required: [true, "Please add a name"],
   },
- address:{
-  
-
- },
+  address: {
+    type: Map,  
+    of: String,  
+    required: true,
+  },
   doctors: {
     type: Schema.Types.ObjectId,
     ref:"Doctor",

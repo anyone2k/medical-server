@@ -7,29 +7,42 @@ const HospitalSchema = new Schema({
     required: [true, "Please add a name"],
   },
   address: {
-    type: Map,  
-    of: String,  
+    type: Map,
+    of: String,
     required: true,
+    default: {
+      street: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      country: "",
+    },
   },
-  doctors: {
-    type: Schema.Types.ObjectId,
-    ref:"Doctor",
-    required: true,
+  doctors: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Doctor",
+      required: true,
+    },
+  ],
+  patients: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Patient",
+      required: true,
+    },
+  ],
+  phone_number: {
+    type: String,
+    required: [true, "Please add a phone_number"],
   },
-  patients: {
-    type: Schema.Types.ObjectId,
-    ref:"Patient",
-    required: true,
-  },
-  phone_number:{
-    type:String,
-    required:[true, "Please add a phone_number"]
-  },
-  staff:{
-    type: Schema.Types.ObjectId,
-    ref:"Staff",
-    required: true,
-  },
+  staff: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Staff",
+      required: true,
+    },
+  ],
   reviews: [
     {
       id: {

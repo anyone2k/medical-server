@@ -36,6 +36,13 @@ const HospitalSchema = new Schema({
     type: String,
     required: [true, "Please add a phone_number"],
   },
+  departements: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Departement",
+      required: true,
+    },
+  ],
   staff: [
     {
       type: Schema.Types.ObjectId,

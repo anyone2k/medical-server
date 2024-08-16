@@ -1,5 +1,4 @@
-// External imports
-const jwt = require("jsonwebtoken");
+
 // Internal Imports
 const Staff = require("../Models/Staff");
 const Patient = require("../Models/Patient");

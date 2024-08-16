@@ -3,6 +3,7 @@ const Hospital = require("../Models/Hospital");
 const Doctor = require("../Models/Doctor");
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
+const {getRessources, createRessource} = require("../utils/userFunctions")
 const { getDataByUser } = require("../utils/filtrationFunctions");
 // @desc  get all hospitals
 // @route   get /api/v1/hospitals
@@ -11,23 +12,13 @@ exports.getHospitals = asyncHandler(async (req, res, next) => {
   
 
   // create a return of all hospitals that the user is part of the staff
-  if (
-    req.user.role === "doctor" ||
-    req.user.role === "nurse" ||
-    req.user.role === "admin" ||
-    req.user.role === "receptionist"
-  ) {
-    const hospitals = await Hospital.find().populate("departments");
-    results = getDataByUser(hospitals, req.user._id);
-    console.log(results);
-    return res.status(200).json({
-      success: true,
-      count: results.length,
-      data: results,
-    });
-  } else {
-    return res.status(200).json(res.advancedResults);
-  }
+  {
+    const hospitals = await getRessources(Hospital);
+
+    return res.status(200).json(
+   hospitals
+    );
+  } 
 });
 // @desc  Get all doctors by hospital ID
 // @route   GET /api/v1/hospitals/:hospitalId/doctors

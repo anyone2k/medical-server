@@ -44,16 +44,16 @@ const router = express.Router({ mergeParams: true });
 
 const advancedResults = require("../middleware/advancedResults");
 
-const { protect, authorize } = require("../middleware/auth");
+const { protect, authorize, staffProtect } = require("../middleware/auth");
 
 router
   .route("/")
-  .get(protect, getHospitals)
-  .post(protect, authorize("admin"), createHospital);
+  .get( getHospitals)
+  .post(staffProtect, authorize("admin"), createHospital);
 
 router
   .route("/:id")
-  .get(protect,getHospital)
+  .get(getHospital)
   .put(protect, authorize("admin"), updateHospital);
 
   router

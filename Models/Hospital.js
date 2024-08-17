@@ -50,20 +50,6 @@ const HospitalSchema = new Schema({
       required: true,
     },
   ],
-  reviews: [
-    {
-      id: {
-        type: Schema.Types.ObjectId,
-        ref: "User", // assuming reviews are linked to users, otherwise use other logic for the ID
-      },
-      rating: {
-        type: Number,
-        min: 1,
-        max: 5,
-        required: [true, "Please add a rating between 1 and 5"],
-      },
-    },
-  ],
   createdAt: {
     type: Date,
     default: Date.now,

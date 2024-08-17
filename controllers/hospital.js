@@ -1,10 +1,10 @@
 // External imports
 const Hospital = require("../Models/Hospital");
-const Doctor = require("../Models/Doctor");
+
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
 const { getRessources, createRessource } = require("../utils/userFunctions");
-const { getDataByUser } = require("../utils/filtrationFunctions");
+
 // @desc  get all hospitals
 // @route   get /api/v1/hospitals
 // @access  public

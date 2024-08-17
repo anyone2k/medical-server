@@ -4,40 +4,12 @@ const express = require("express");
 const {
   getHospitals,
   getHospital,
+  getAddresses,
   createHospital,
   updateHospital,
   getDoctorsByHospitalId,
   getDepartmentsByHospitalId,
 } = require("../controllers/hospital");
-const {
-  getDepartements,
-  getDepartment,
-  createDepartment,
-  updateDepartment,
-} = require("../controllers/departement");
-
-const {
-  getPatients,
-  getPatientById,
-  createPatient,
-  updatePatient,
-} = require("../controllers/patient");
-
-const {
-  getStaff,
-  getStaffById,
-  createStaff,
-  updateStaff,
-} = require("../controllers/staff");
-
-const {
-  getPublications,
-  getPublicationsByDoctor,
-  getPublication,
-  createPublication,
-  updatePublication,
-  deletePublication,
-} = require("../controllers/publications");
 
 const Hospital = require("../Models/Hospital");
 
@@ -52,6 +24,7 @@ router
   .get(staffProtect, authorize("admin"), getHospitals)
   .post(staffProtect, authorize("admin"), createHospital);
 
+router.route("/addresses").get(getAddresses);
 router
   .route("/:id")
   .get(staffProtect, authorize("admin"), getHospital)
@@ -61,8 +34,8 @@ router
   .route("/:id/doctors")
   .get(staffProtect, authorize("admin"), getDoctorsByHospitalId);
 
-  router
+router
   .route("/:id/department")
-  .get(staffProtect, authorize("admin"), getDepartmentsByHospitalId );
+  .get(staffProtect, authorize("admin"), getDepartmentsByHospitalId);
 
 module.exports = router;

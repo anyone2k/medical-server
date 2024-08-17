@@ -82,6 +82,11 @@ const DoctorSchema = new mongoose.Schema({
     default:
       "https://drive.google.com/file/d/1EyXbZPP-qX9UHmrdpn61uLfTkbChzVcF/view?usp=drive_link",
   },
+  hospital: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Hospital",
+    required: true,
+  },
   isActive: {
     type: Boolean,
     default: true,

@@ -73,7 +73,10 @@ exports.getRessources = async (model) => {
 exports.getRessourceById = async (model, req) => {
   const result = await model.findById(req.params.id);
   if (!result) {
-    throw new ErrorResponse(`Resource not found with id of ${req.params.id}`, 404);
+    throw new ErrorResponse(
+      `Resource not found with id of ${req.params.id}`,
+      404
+    );
   }
   return {
     success: true,

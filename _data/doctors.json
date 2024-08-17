@@ -1,50 +1,53 @@
 [
   {
     "fullName": {
-      "firstName": "Sophie",
-      "lastName": "Dubois"
+      "firstName": "John",
+      "lastName": "Doe"
     },
-    "email": "sophie.dubois@hospitalmtl.ca",
-    "password": "$2b$10$E9q7j9ABNaZR0.t3OLrX4ObeA5GGjs8PzkmrejtD1Zj.eTtZ0w4iS",  
-    "sex": "Female",
+    "email": "john.doe@example.com",
+    "password": "$2b$10$uIjNGgwMDwymEjGYVg.tnOBfvo5ejdHq6XrdO1RgLTbqNcdS9OMAa", 
+    "sex": "Male",
     "specialisation": {
       "name": "surgeon",
       "field": "orthopedics"
     },
-    "profilePicture": "https://drive.google.com/file/d/1EyXbZPP-qX9UHmrdpn61uLfTkbChzVcF/view?usp=drive_link",
-    "isActive": true
-   
+    "profilePicture": "https://lh3.googleusercontent.com/a/ACg8ocK_TTJu99pnQhFstjDnxiAwmL6EZnXly_jOJay_bxD64XaDpA=s96-c",
+    "hospital": "66bfb3cba44df1ca048dae44",
+    "isActive": true,
+    "createdAt": "2023-08-17T12:00:00Z"
   },
   {
     "fullName": {
-      "firstName": "Marc",
-      "lastName": "Lefebvre"
+      "firstName": "Alice",
+      "lastName": "Smith"
     },
-    "email": "marc.lefebvre@hospitalmtl.ca",
-    "password": "$2b$10$QJq9j7AhPLKMui4yALGyIQXcyMkpf8S8GibMb9pYw83F8EKzQwzi6",  
+    "email": "alice.smith@example.com",
+    "password": "$2b$10$uIjNGgwMDwymEjGYVg.tnOBfvo5ejdHq6XrdO1RgLTbqNcdS9OMAa", 
+    "sex": "Female",
+    "specialisation": {
+      "name": "dentist",
+      "field": "odontology"
+    },
+    "profilePicture": "https://lh3.googleusercontent.com/a/ACg8ocK_TTJu99pnQhFstjDnxiAwmL6EZnXly_jOJay_bxD64XaDpA=s96-c",
+    "hospital": "66bfb3cba44df1ca048dae44",
+    "isActive": true,
+    "createdAt": "2023-08-17T12:00:00Z"
+  },
+  {
+    "fullName": {
+      "firstName": "Michael",
+      "lastName": "Johnson"
+    },
+    "email": "michael.johnson@example.com",
+    "password": "$2b$10$uIjNGgwMDwymEjGYVg.tnOBfvo5ejdHq6XrdO1RgLTbqNcdS9OMAa", 
     "sex": "Male",
     "specialisation": {
       "name": "general",
       "field": "cardiology"
     },
-    "profilePicture": "https://drive.google.com/file/d/1EyXbZPP-qX9UHmrdpn61uLfTkbChzVcF/view?usp=drive_link",
-    "isActive": true
-   
-  },
-  {
-    "fullName": {
-      "firstName": "Isabelle",
-      "lastName": "Fortin"
-    },
-    "email": "isabelle.fortin@hospitalmtl.ca",
-    "password": "$2b$10$V5F57rZQdHvs/VBSpmtL5J3vTIf5Dbh3WZCJ9y5mOf/h6JpV/mu0e",  
-    "sex": "Female",
-    "specialisation": {
-      "name": "dentist",
-      "field": "periodontics"
-    },
-    "profilePicture": "https://drive.google.com/file/d/1EyXbZPP-qX9UHmrdpn61uLfTkbChzVcF/view?usp=drive_link",
-    "isActive": true
-  
+    "profilePicture": "https://lh3.googleusercontent.com/a/ACg8ocK_TTJu99pnQhFstjDnxiAwmL6EZnXly_jOJay_bxD64XaDpA=s96-c",
+    "hospital": "66bfb3cba44df1ca048dae44",
+    "isActive": false,
+    "createdAt": "2023-08-17T12:00:00Z"
   }
 ]

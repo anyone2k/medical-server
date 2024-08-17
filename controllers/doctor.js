@@ -9,12 +9,17 @@ const {
   updateById,
   deleteById,
 } = require("../utils/userFunctions");
+const { getRessourcesWithPopulate } = require("../utils/resourcesFunctions");
 
 // @desc  Get all doctors
 // @route   GET /api/v1/doctors
 // @access  public
 exports.getDoctors = asyncHandler(async (req, res, next) => {
-  const results = await getRessources(Doctor);
+  const results = await getRessourcesWithPopulate(
+    Doctor,
+    "hospital",
+    "name address"
+  );
   res.status(200).json(results);
 });
 
@@ -29,7 +34,6 @@ exports.getDoctor = asyncHandler(async (req, res, next) => {
     next(error); // Cela envoie l'erreur à votre middleware de gestion d'erreurs
   }
 });
-
 
 // @desc  Create new doctor
 // @route   POST /api/v1/doctors
@@ -54,5 +58,3 @@ exports.deleteDoctor = asyncHandler(async (req, res, next) => {
   const result = await deleteById(Doctor, req);
   res.status(204).json(result);
 });
-
-

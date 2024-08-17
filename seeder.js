@@ -7,9 +7,9 @@ const dotenv = require("dotenv");
 // const Hospital = require("./Models/Hospital");
 const Department = require("./Models/Departement");
 // const Staff = require("./Models/Staff");
- //const Patient = require("./models/Patient");
+//const Patient = require("./models/Patient");
 // const Schedule = require("./Models/Schedule");
-//const Doctor = require("./Models/Doctor");
+const Doctor = require("./Models/Doctor");
 // Load ENV Variables
 dotenv.config({ path: "./config/config.env" });
 
@@ -41,10 +41,10 @@ const doctors = JSON.parse(
 // Import Data Into Database
 const importData = async () => {
   try {
-   // await Doctor.create(doctors);
+    await Doctor.create(doctors);
     // await Publication.create(publications);
-     //await Hospital.create(hospitals);
-    await Department.create(departements);
+    //await Hospital.create(hospitals);
+    // await Department.create(departements);
     // await Staff.create(staffs);
     // await Patient.create(patients);
     // await Schedule.create(schedules);

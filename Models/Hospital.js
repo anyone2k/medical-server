@@ -6,19 +6,62 @@ const HospitalSchema = new Schema({
     type: String,
     required: [true, "Please add a name"],
   },
-  description: {
-    type: String,
-    required: [true, "Please add a description"],
+  address: {
+    type: Map,
+    of: String,
+    required: true,
+    default: {
+      street: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      country: "",
+    },
   },
-  location: {
+  doctors: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Doctor",
+      required: true,
+    },
+  ],
+  patients: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Patient",
+      required: true,
+    },
+  ],
+  phone_number: {
     type: String,
-    required: [true, "Please add a location"],
+    required: [true, "Please add a phone_number"],
   },
-  departments: [
+  departements: [
     {
       type: Schema.Types.ObjectId,
       ref: "Departement",
       required: true,
+    },
+  ],
+  staff: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Staff",
+      required: true,
+    },
+  ],
+  reviews: [
+    {
+      id: {
+        type: Schema.Types.ObjectId,
+        ref: "User", // assuming reviews are linked to users, otherwise use other logic for the ID
+      },
+      rating: {
+        type: Number,
+        min: 1,
+        max: 5,
+        required: [true, "Please add a rating between 1 and 5"],
+      },
     },
   ],
   createdAt: {

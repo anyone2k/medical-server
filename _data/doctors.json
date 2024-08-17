@@ -1,240 +1,53 @@
 [
-    {
-      "fullName": {
-        "firstName": "Alice",
-        "lastName": "Dupont"
-      },
-      "email": "alice.dupont@example.com",
-      "password": "password123",
-      "sex": "Female",
-      "specialisation": {
-        "name": "dentist",
-        "field": "odontology"
-      },
-      "profilePicture": "https://example.com/profile/alice.jpg",
-      "hostpital": "66b8716e99640d7a69aa2f8d",
-      "isActive": true,
-      "createdAt": "2024-08-15T10:00:00Z"
+  {
+    "fullName": {
+      "firstName": "John",
+      "lastName": "Doe"
     },
-    {
-      "fullName": {
-        "firstName": "Bob",
-        "lastName": "Martin"
-      },
-      "email": "bob.martin@example.com",
-      "password": "password456",
-      "sex": "Male",
-      "specialisation": {
-        "name": "surgeon",
-        "field": "orthopedics"
-      },
-      "profilePicture": "https://example.com/profile/bob.jpg",
-      "hostpital": "66b8716e99640d7a69aa2f8d",
-      "isActive": true,
-      "createdAt": "2024-08-15T11:00:00Z"
+    "email": "john.doe@example.com",
+    "password": "$2b$10$uIjNGgwMDwymEjGYVg.tnOBfvo5ejdHq6XrdO1RgLTbqNcdS9OMAa", 
+    "sex": "Male",
+    "specialisation": {
+      "name": "surgeon",
+      "field": "orthopedics"
     },
-    {
-      "fullName": {
-        "firstName": "Claire",
-        "lastName": "Lemoine"
-      },
-      "email": "claire.lemoine@example.com",
-      "password": "password789",
-      "sex": "Female",
-      "specialisation": {
-        "name": "general",
-        "field": "pediatrics"
-      },
-      "profilePicture": "https://example.com/profile/claire.jpg",
-      "hostpital": "66b8716e99640d7a69aa2f8d",
-      "isActive": true,
-      "createdAt": "2024-08-15T12:00:00Z"
+    "profilePicture": "https://lh3.googleusercontent.com/a/ACg8ocK_TTJu99pnQhFstjDnxiAwmL6EZnXly_jOJay_bxD64XaDpA=s96-c",
+    "hospital": "66bfb3cba44df1ca048dae44",
+    "isActive": true,
+    "createdAt": "2023-08-17T12:00:00Z"
+  },
+  {
+    "fullName": {
+      "firstName": "Alice",
+      "lastName": "Smith"
     },
-    {
-      "fullName": {
-        "firstName": "David",
-        "lastName": "Garcia"
-      },
-      "email": "david.garcia@example.com",
-      "password": "password012",
-      "sex": "Male",
-      "specialisation": {
-        "name": "dentist",
-        "field": "orthodontics"
-      },
-      "profilePicture": "https://example.com/profile/david.jpg",
-      "hostpital": "66b8716e99640d7a69aa2f8d",
-      "isActive": true,
-      "createdAt": "2024-08-15T13:00:00Z"
+    "email": "alice.smith@example.com",
+    "password": "$2b$10$uIjNGgwMDwymEjGYVg.tnOBfvo5ejdHq6XrdO1RgLTbqNcdS9OMAa", 
+    "sex": "Female",
+    "specialisation": {
+      "name": "dentist",
+      "field": "odontology"
     },
-    {
-      "fullName": {
-        "firstName": "Eva",
-        "lastName": "Hansen"
-      },
-      "email": "eva.hansen@example.com",
-      "password": "password345",
-      "sex": "Female",
-      "specialisation": {
-        "name": "surgeon",
-        "field": "cardiology"
-      },
-      "profilePicture": "https://example.com/profile/eva.jpg",
-      "hostpital": "66b8716e99640d7a69aa2f8d",
-      "isActive": true,
-      "createdAt": "2024-08-15T14:00:00Z"
+    "profilePicture": "https://lh3.googleusercontent.com/a/ACg8ocK_TTJu99pnQhFstjDnxiAwmL6EZnXly_jOJay_bxD64XaDpA=s96-c",
+    "hospital": "66bfb3cba44df1ca048dae44",
+    "isActive": true,
+    "createdAt": "2023-08-17T12:00:00Z"
+  },
+  {
+    "fullName": {
+      "firstName": "Michael",
+      "lastName": "Johnson"
     },
-    {
-      "fullName": {
-        "firstName": "Frank",
-        "lastName": "Wagner"
-      },
-      "email": "frank.wagner@example.com",
-      "password": "password678",
-      "sex": "Male",
-      "specialisation": {
-        "name": "general",
-        "field": "neurology"
-      },
-      "profilePicture": "https://example.com/profile/frank.jpg",
-      "hostpital": "66b8716e99640d7a69aa2f8d",
-      "isActive": true,
-      "createdAt": "2024-08-15T15:00:00Z"
+    "email": "michael.johnson@example.com",
+    "password": "$2b$10$uIjNGgwMDwymEjGYVg.tnOBfvo5ejdHq6XrdO1RgLTbqNcdS9OMAa", 
+    "sex": "Male",
+    "specialisation": {
+      "name": "general",
+      "field": "cardiology"
     },
-    {
-      "fullName": {
-        "firstName": "Grace",
-        "lastName": "Baker"
-      },
-      "email": "grace.baker@example.com",
-      "password": "password901",
-      "sex": "Female",
-      "specialisation": {
-        "name": "dentist",
-        "field": "periodontics"
-      },
-      "profilePicture": "https://example.com/profile/grace.jpg",
-      "hostpital": "66b8716e99640d7a69aa2f8d",
-      "isActive": true,
-      "createdAt": "2024-08-15T16:00:00Z"
-    },
-    {
-      "fullName": {
-        "firstName": "Henry",
-        "lastName": "Miller"
-      },
-      "email": "henry.miller@example.com",
-      "password": "password234",
-      "sex": "Male",
-      "specialisation": {
-        "name": "surgeon",
-        "field": "oncology"
-      },
-      "profilePicture": "https://example.com/profile/henry.jpg",
-      "hostpital": "66b8716e99640d7a69aa2f8d",
-      "isActive": true,
-      "createdAt": "2024-08-15T17:00:00Z"
-    },
-    {
-      "fullName": {
-        "firstName": "Isabelle",
-        "lastName": "Carter"
-      },
-      "email": "isabelle.carter@example.com",
-      "password": "password567",
-      "sex": "Female",
-      "specialisation": {
-        "name": "general",
-        "field": "gastroenterology"
-      },
-      "profilePicture": "https://example.com/profile/isabelle.jpg",
-      "hostpital": "66b8716e99640d7a69aa2f8d",
-      "isActive": true,
-      "createdAt": "2024-08-15T18:00:00Z"
-    },
-    {
-      "fullName": {
-        "firstName": "John",
-        "lastName": "Smith"
-      },
-      "email": "john.smith@example.com",
-      "password": "password890",
-      "sex": "Male",
-      "specialisation": {
-        "name": "dentist",
-        "field": "endodontics"
-      },
-      "profilePicture": "https://example.com/profile/john.jpg",
-      "hostpital": "66b8716e99640d7a69aa2f8d",
-      "isActive": true,
-      "createdAt": "2024-08-15T19:00:00Z"
-    },
-    {
-      "fullName": {
-        "firstName": "Katherine",
-        "lastName": "Adams"
-      },
-      "email": "katherine.adams@example.com",
-      "password": "password1234",
-      "sex": "Female",
-      "specialisation": {
-        "name": "surgeon",
-        "field": "urology"
-      },
-      "profilePicture": "https://example.com/profile/katherine.jpg",
-      "hostpital": "66b8716e99640d7a69aa2f8d",
-      "isActive": true,
-      "createdAt": "2024-08-15T20:00:00Z"
-    },
-    {
-      "fullName": {
-        "firstName": "Lucas",
-        "lastName": "Brown"
-      },
-      "email": "lucas.brown@example.com",
-      "password": "password5678",
-      "sex": "Male",
-      "specialisation": {
-        "name": "general",
-        "field": "infectious disease"
-      },
-      "profilePicture": "https://example.com/profile/lucas.jpg",
-      "hostpital": "66b8716e99640d7a69aa2f8d",
-      "isActive": true,
-      "createdAt": "2024-08-15T21:00:00Z"
-    },
-    {
-      "fullName": {
-        "firstName": "Mia",
-        "lastName": "Wilson"
-      },
-      "email": "mia.wilson@example.com",
-      "password": "password6789",
-      "sex": "Female",
-      "specialisation": {
-        "name": "dentist",
-        "field": "periodontics"
-      },
-      "profilePicture": "https://example.com/profile/mia.jpg",
-      "hostpital": "66b8716e99640d7a69aa2f8d",
-      "isActive": true,
-      "createdAt": "2024-08-15T22:00:00Z"
-    },
-    {
-      "fullName": {
-        "firstName": "Nathan",
-        "lastName": "White"
-      },
-      "email": "nathan.white@example.com",
-      "password": "password7890",
-      "sex": "Male",
-      "specialisation": {
-        "name": "surgeon",
-        "field": "radiology"
-      },
-      "profilePicture": "https://example.com/profile/nathan.jpg",
-      "hostpital": "66b8716e99640d7a69aa2f8d",
-      "isActive": true,
-      "createdAt": "2024-08-15T23:00:00Z"
-    }
-  ]  
+    "profilePicture": "https://lh3.googleusercontent.com/a/ACg8ocK_TTJu99pnQhFstjDnxiAwmL6EZnXly_jOJay_bxD64XaDpA=s96-c",
+    "hospital": "66bfb3cba44df1ca048dae44",
+    "isActive": false,
+    "createdAt": "2023-08-17T12:00:00Z"
+  }
+]

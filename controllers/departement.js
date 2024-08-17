@@ -7,9 +7,10 @@ const asyncHandler = require("../middleware/async");
 // @route   get /api/v1/departments
 // @access  public
 // get departments using hospital id
-exports.getDepartements = asyncHandler(async (req, res, next) => {
-  if (req.params.id) {
-    const departments = await Department.find({ hospital: req.params.id });
+exports.getDepartments = asyncHandler(async (req, res, next) => {
+  const hospitalId = req.params.hospitalId;
+  if (hospitalId) {
+    const departments = await Department.find({ hospital: hospitalId });
 
     return res.status(200).json({
       success: true,
@@ -17,9 +18,10 @@ exports.getDepartements = asyncHandler(async (req, res, next) => {
       data: departments,
     });
   } else {
-    res.status(200).json(res.advancedResults);
+    return next(new ErrorResponse("Hospital ID is required", 400));
   }
 });
+
 
 // @desc  get a department by id
 // @route   get /api/v1/departments/:id

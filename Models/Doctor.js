@@ -3,6 +3,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 // Schema
 const DoctorSchema = new mongoose.Schema({
   fullName: {
@@ -37,7 +38,7 @@ const DoctorSchema = new mongoose.Schema({
       name: {
         type: String,
         enum: ["dentist", "surgeon", "general"],
-        default: "doctor",
+        default: "general",
       },
       field: {
         type: String,
@@ -81,8 +82,8 @@ const DoctorSchema = new mongoose.Schema({
     default:
       "https://drive.google.com/file/d/1EyXbZPP-qX9UHmrdpn61uLfTkbChzVcF/view?usp=drive_link",
   },
-  hostpital: {
-    type: mongoose.Schema.ObjectId,
+  hospital: {
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Hospital",
     required: true,
   },
@@ -107,10 +108,27 @@ DoctorSchema.pre("save", async function (next) {
 });
 
 // Sign JWT and return
-DoctorSchema.methods.generateToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE,
-  });
+DoctorSchema.methods.generateTokens = function () {
+  return {
+    accessToken: jwt.sign(
+      {
+        _id: this._id,
+      },
+      process.env.ACCESS_TOKEN_SECRET,
+      {
+        expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+      }
+    ),
+    refreshToken: jwt.sign(
+      {
+        _id: this._id,
+      },
+      process.env.REFRESH_TOKEN_SECRET,
+      {
+        expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
+      }
+    ),
+  };
 };
 
 // Match user entered password to hashed password in database

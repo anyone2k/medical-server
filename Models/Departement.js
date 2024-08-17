@@ -6,10 +6,6 @@ const DepartementSchema = new Schema({
     type: String,
     required: [true, "Please add a name"],
   },
-  description: {
-    type: String,
-    required: [true, "Please add a description"],
-  },
   headOfDepartement: {
     type: Schema.Types.ObjectId,
     ref: "Staff",

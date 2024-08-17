@@ -4,38 +4,12 @@ const express = require("express");
 const {
   getHospitals,
   getHospital,
+  getAddresses,
   createHospital,
   updateHospital,
+  getDoctorsByHospitalId,
+  getDepartmentsByHospitalId,
 } = require("../controllers/hospital");
-const {
-  getDepartements,
-  getDepartment,
-  createDepartment,
-  updateDepartment,
-} = require("../controllers/departement");
-
-const {
-  getPatients,
-  getPatientById,
-  createPatient,
-  updatePatient,
-} = require("../controllers/patient");
-
-const {
-  getStaff,
-  getStaffById,
-  createStaff,
-  updateStaff,
-} = require("../controllers/staff");
-
-const {
-  getPublications,
-  getPublicationsByDoctor,
-  getPublication,
-  createPublication,
-  updatePublication,
-  deletePublication,
-} = require("../controllers/publications");
 
 const Hospital = require("../Models/Hospital");
 
@@ -43,62 +17,25 @@ const router = express.Router({ mergeParams: true });
 
 const advancedResults = require("../middleware/advancedResults");
 
-const { protect, authorize } = require("../middleware/auth");
+const { authorize, staffProtect } = require("../middleware/auth");
 
 router
   .route("/")
-  .get(protect, getHospitals)
-  .post(protect, authorize("admin"), createHospital);
+  .get(staffProtect, authorize("admin"), getHospitals)
+  .post(staffProtect, authorize("admin"), createHospital);
 
+router.route("/addresses").get(getAddresses);
 router
   .route("/:id")
-  .get(getHospital)
-  .put(protect, authorize("admin"), updateHospital);
+  .get(staffProtect, authorize("admin"), getHospital)
+  .put(staffProtect, authorize("admin"), updateHospital);
 
 router
-  .route("/:id/departements")
-  .get(protect, getDepartements)
-  .post(protect, authorize("admin"), createDepartment);
+  .route("/:id/doctors")
+  .get(staffProtect, authorize("admin"), getDoctorsByHospitalId);
 
 router
-  .route("/:id/departements/:departmentId")
-  .get(protect, getDepartment)
-  .put(protect, authorize("admin"), updateDepartment);
-
-router
-  .route("/:id/departements/:departmentId/staff")
-  .get(protect, getStaff)
-  .post(protect, authorize("admin"), createStaff);
-router
-  .route("/:id/departements/:departmentId/staff/:staffId")
-  .get(protect, getStaffById)
-  .put(protect, authorize("admin"), updateStaff);
-
-router
-  .route("/:id/departements/:departmentId/staff/:staffId/publications")
-  .get(protect, getPublications)
-  .post(protect, authorize("admin"), createPublication);
-
-router
-  .route("/:id/departements/:departmentId/patients")
-  .get(protect, getPatients)
-  .post(protect, authorize("admin"), createPatient);
-
-router
-  .route("/:id/departements/:departmentId/patients/:patientId")
-  .get(protect, getPatientById)
-  .put(protect, authorize("admin"), updatePatient);
-
-router
-  .route("/:id/departements/:departmentId/patients/:patientId/publications")
-  .get(protect, getPublications)
-  .post(protect, authorize("admin"), createPublication);
-
-router
-  .route(
-    "/:id/departements/:departmentId/patients/:patientId/publications/:publicationId"
-  )
-  .get(protect, getPublication)
-  .put(protect, authorize("admin"), updatePublication);
+  .route("/:id/department")
+  .get(staffProtect, authorize("admin"), getDepartmentsByHospitalId);
 
 module.exports = router;

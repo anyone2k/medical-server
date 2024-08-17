@@ -8,15 +8,15 @@ const {
   updateDoctor,
   deleteDoctor,
 } = require("../controllers/doctor");
-const { protect, authorize } = require("../middleware/auth");
+const { protect, authorize, staffProtect } = require("../middleware/auth");
 
 const router = express.Router();
 
 router.route("/").get(getDoctors).post(protect, createDoctor);
 router
   .route("/:id")
-  .get(protect, getDoctor)
-  .put(protect, authorize("admin"), updateDoctor)
-  .delete(protect, authorize("admin"), deleteDoctor);
+  .get(staffProtect,authorize("admin"), getDoctor)
+  .put(staffProtect, authorize("admin"), updateDoctor)
+  .delete(staffProtect, authorize("admin"), deleteDoctor);
 
 module.exports = router;

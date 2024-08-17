@@ -1,163 +1,33 @@
 [
-    {
-      "name": "Alice Dupont",
-      "email": "alice.dupont@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1985-03-14",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Bob Martin",
-      "email": "bob.martin@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1990-07-22",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Carla Petit",
-      "email": "carla.petit@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1982-11-05",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "David Leclerc",
-      "email": "david.leclerc@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1978-09-18",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Eva Martin",
-      "email": "eva.martin@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1995-01-30",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Franck Deschamps",
-      "email": "franck.deschamps@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1988-06-12",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Gina Moreau",
-      "email": "gina.moreau@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1992-04-25",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Hugo Robert",
-      "email": "hugo.robert@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1984-08-10",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Isabelle Durand",
-      "email": "isabelle.durand@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1991-02-20",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Jean Dupuis",
-      "email": "jean.dupuis@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1987-05-15",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Klara Simon",
-      "email": "klara.simon@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1994-12-01",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Louis Garnier",
-      "email": "louis.garnier@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1981-10-29",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Marie Lefevre",
-      "email": "marie.lefevre@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1986-07-04",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Nicolas Bertin",
-      "email": "nicolas.bertin@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1993-11-12",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Olivia Dufresne",
-      "email": "olivia.dufresne@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1990-03-23",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Paul Roux",
-      "email": "paul.roux@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1983-09-09",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Quinn Lefevre",
-      "email": "quinn.lefevre@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1997-05-20",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Rachel Gauthier",
-      "email": "rachel.gauthier@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1989-01-15",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Samuel Côté",
-      "email": "samuel.cote@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1992-08-25",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Tina Bernard",
-      "email": "tina.bernard@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1984-04-14",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Ulysse Rey",
-      "email": "ulysse.rey@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1980-12-03",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "Véronique Marchand",
-      "email": "veronique.marchand@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1996-02-28",
-      "profilePicture": "no-photo.jpg"
-    },
-    {
-      "name": "William Faure",
-      "email": "william.faure@example.com",
-      "password": "$2y$10$4C97q91r6zFEW8Hw9/ZPFOikV9.7g.ltefsI7bRYLisHPzFNuqZb6",
-      "dateOfBirth": "1983-11-21",
-      "profilePicture": "no-photo.jpg"
-    }
+  {
+    "name": "Alice Tremblay",
+    "email": "alice.tremblay@example.com",
+    "password": "$2b$10$KsH1f5yLZbPBtpJcP5fdX.k9QY2m4U7r9Skx/B/vu8OUpbtYyZeM6", 
+    "dateOfBirth": "1985-03-25",
+    "phone_number": "+1-514-555-1234",
+    "emergency_contact": "+1-438-555-9876",
+    "profilePicture": "no-photo.jpg"
+    
+    
+  },
+  {
+    "name": "Julie Lambert",
+    "email": "julie.lambert@example.com",
+    "password": "$2b$10$TiJPO3SMB8ZpFMV0o5KLK./C1E0LJCrmDJXZupQ1phhm8W4dCTtxC", 
+    "dateOfBirth": "1992-06-12",
+    "phone_number": "+1-514-555-5678",
+    "emergency_contact": "+1-438-555-6543",
+    "profilePicture": "no-photo.jpg"
+  
+  },
+  {
+    "name": "Sophie Gagnon",
+    "email": "sophie.gagnon@example.com",
+    "password": "$2b$10$qlHwZGxsN6d9wCx/PCUbguO0leJrPuYvNX82CFzchO8Ry9GfEts8y", 
+    "dateOfBirth": "1978-11-05",
+    "phone_number": "+1-514-555-7890",
+    "emergency_contact": "+1-438-555-3210",
+    "profilePicture": "no-photo.jpg"
+
+  }
 ]

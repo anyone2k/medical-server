@@ -9,12 +9,17 @@ const {
   updateById,
   deleteById,
 } = require("../utils/userFunctions");
+const { getRessourcesWithPopulate } = require("../utils/resourcesFunctions");
 
 // @desc  Get all doctors
 // @route   GET /api/v1/doctors
 // @access  public
 exports.getDoctors = asyncHandler(async (req, res, next) => {
-  const results = await getRessources(Doctor);
+  const results = await getRessourcesWithPopulate(
+    Doctor,
+    "hospital",
+    "name address"
+  );
   res.status(200).json(results);
 });
 
@@ -22,8 +27,12 @@ exports.getDoctors = asyncHandler(async (req, res, next) => {
 // @route   GET /api/v1/doctors/:id
 // @access  public
 exports.getDoctor = asyncHandler(async (req, res, next) => {
-  const result = await getRessourceById(Doctor, req);
-  res.status(200).json(result);
+  try {
+    const result = await getRessourceById(Doctor, req);
+    res.status(200).json(result);
+  } catch (error) {
+    next(error); // Cela envoie l'erreur à votre middleware de gestion d'erreurs
+  }
 });
 
 // @desc  Create new doctor

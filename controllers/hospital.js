@@ -142,7 +142,7 @@ exports.updateHospital = asyncHandler(async (req, res, next) => {
 });
 
 exports.getAddresses = asyncHandler(async (req, res, next) => {
-  const addresses = await Hospital.find().select("address");
+  const addresses = await Hospital.find().select("name address");
 
   res.status(200).json({
     success: true,

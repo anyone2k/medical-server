@@ -21,7 +21,8 @@ const { authorize, staffProtect } = require("../middleware/auth");
 
 router
   .route("/")
-  .get(staffProtect, authorize("admin"), getHospitals)
+  // add this staffProtect, authorize("admin"),
+  .get(getHospitals)
   .post(staffProtect, authorize("admin"), createHospital);
 
 router.route("/addresses").get(getAddresses);

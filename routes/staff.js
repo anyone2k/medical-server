@@ -9,7 +9,7 @@ const { staffProtect, authorize } = require("../middleware/auth");
 router.route("/").get(
   advancedResults(Staff, {
     path: "hospital",
-    select: "fullName email role",
+    select: "name email role",
   }),
   getStaff
 );

@@ -9,7 +9,9 @@ const ErrorResponse = require("../utils/errorResponse");
 // @access  public
 exports.getStaff = asyncHandler(async (req, res, next) => {
   if (req.params.hospitalId) {
-    const staff = await Staff.find({ hospital: req.params.hospitalId });
+    const staff = await Staff.find({ hospital: req.params.hospitalId }).select(
+      "name email role"
+    );
     return res.status(200).send({
       success: true,
       count: staff.length,

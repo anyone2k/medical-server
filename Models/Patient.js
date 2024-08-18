@@ -6,9 +6,15 @@ const Schema = mongoose.Schema;
 
 const PatientSchema = new Schema(
   {
-    name: {
-      type: String,
-      required: [true, "Please provide a first name"],
+    fullName: {
+      firstName: {
+        type: String,
+        required: [true, "Please add a first name"],
+      },
+      lastName: {
+        type: String,
+        required: [true, "Please add a last name"],
+      },
     },
     email: {
       type: String,
@@ -26,33 +32,25 @@ const PatientSchema = new Schema(
       type: Date,
       trim: true,
     },
-    phone_number:{
-      type:String,
-      required:[true, "Please provide a phone number :"],
-    },
-    emergency_contact:{
-      type:String,
-      required:[true, "Please provide a emergency contact :"],
-    },
-
-    profilePicture: {
+    phone_number: {
       type: String,
-      default: "no-photo.jpg",
+      required: [true, "Please provide a phone number :"],
     },
-    bed: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Bed",
-        required: true,
-      },
-    ],
     medicalfile: [
       {
-       type: Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "MedicalFile",
         required: true,
       },
     ],
+    emergency_contact: {
+      type: String,
+      required: [true, "Please provide a emergency contact :"],
+    },
+    profilePicture: {
+      type: String,
+      default: "no-photo.jpg",
+    },
   },
   { timestamps: true }
 );

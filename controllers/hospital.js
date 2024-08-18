@@ -12,7 +12,11 @@ const { getRessourcesWithPopulate } = require("../utils/resourcesFunctions");
 exports.getHospitals = asyncHandler(async (req, res, next) => {
   // create a return of all hospitals that the user is part of the staff
   {
-    const hospitals = await getRessourcesWithPopulate(Hospital, "staff", "");
+    const hospitals = await getRessourcesWithPopulate(
+      Hospital,
+      "staff",
+      "name email role"
+    );
 
     return res.status(200).json(hospitals);
   }

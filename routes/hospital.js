@@ -13,16 +13,18 @@ const {
 
 const Hospital = require("../Models/Hospital");
 
-const router = express.Router({ mergeParams: true });
-
 const advancedResults = require("../middleware/advancedResults");
 
+const staffRouter = require("./staff");
 const { authorize, staffProtect } = require("../middleware/auth");
+const router = express.Router();
+
+router.use("/:hospitalId/staff", staffRouter);
 
 router
   .route("/")
   // add this staffProtect, authorize("admin"),
-  .get(getHospitals)
+  .get(advancedResults(Hospital, "staff"), getHospitals)
   .post(staffProtect, authorize("admin"), createHospital);
 
 router.route("/addresses").get(getAddresses);

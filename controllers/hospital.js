@@ -12,9 +12,7 @@ const { getRessourcesWithPopulate } = require("../utils/resourcesFunctions");
 exports.getHospitals = asyncHandler(async (req, res, next) => {
   // create a return of all hospitals that the user is part of the staff
   {
-    const hospitals = await getRessources(Hospital);
-
-    return res.status(200).json(hospitals);
+    res.status(200).json(res.advancedResults);
   }
 });
 // @desc  Get all doctors by hospital ID
@@ -94,11 +92,7 @@ exports.getDepartmentsByHospitalId = asyncHandler(async (req, res, next) => {
 // @route   get /api/v1/hospitals/:id
 // @access  public
 exports.getHospital = asyncHandler(async (req, res, next) => {
-  const hospital = await Hospital.findById(req.params.id)
-    .populate("doctors", "full_name specialization")
-    .populate("patients", "first_name last_name")
-    .populate("staff", "first_name last_name role");
-
+  const hospital = await Hospital.findById(req.params.id);
   // Vérifie si l'hôpital existe
   if (!hospital) {
     return next(

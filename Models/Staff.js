@@ -31,6 +31,11 @@ const StaffSchema = new Schema({
     enum: ["admin", "doctor", "nurse", "receptionist"],
     required: [true, "Please provide a role"],
   },
+  hospital: {
+    type: Schema.Types.ObjectId,
+    ref: "Hospital",
+    required: true,
+  },
   photo: {
     type: String,
     default: "no-photo.jpg",

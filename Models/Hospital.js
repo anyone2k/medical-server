@@ -43,13 +43,6 @@ const HospitalSchema = new Schema({
       required: true,
     },
   ],
-  staff: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Staff",
-      required: true,
-    },
-  ],
   reviews: [
     {
       id: {

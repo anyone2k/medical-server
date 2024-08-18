@@ -8,13 +8,16 @@ const ErrorResponse = require("../utils/errorResponse");
 // @route   get /api/v1/staff
 // @access  public
 exports.getStaff = asyncHandler(async (req, res, next) => {
-  // get all staff from the hospital use the following route "/:id/departements/:departementId/staff"
-  const staff = await Departement.find({
-    _id: req.params.departementId,
-    hospital: req.params.id,
-  }).populate("staff");
-
-  return res.status(200).send(staff[0].staff);
+  if (req.params.hospitalId) {
+    const staff = await Staff.find({ hospital: req.params.hospitalId });
+    return res.status(200).send({
+      success: true,
+      count: staff.length,
+      data: staff,
+    });
+  } else {
+    res.status(200).send(res.advancedResults);
+  }
 });
 
 // @desc  get single staff

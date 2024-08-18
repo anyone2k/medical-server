@@ -8,10 +8,12 @@ const {
   updateBed,
   deleteBed,
 } = require("../controllers/bed");
+
 const { staffProtect, authorize } = require("../middleware/auth");
 const Bed = require("../Models/Bed");
 const router = express.Router({ mergeParams: true });
 const advancedResults = require("../middleware/advancedResults");
+
 router
   .route("/")
   .get(

@@ -7,8 +7,6 @@ const {
   getAddresses,
   createHospital,
   updateHospital,
-  getDoctorsByHospitalId,
-  getDepartmentsByHospitalId,
 } = require("../controllers/hospital");
 
 const Hospital = require("../Models/Hospital");
@@ -31,22 +29,14 @@ router.use("/:hospitalId/patients", patientRouter);
 router.use("/:hospitalId/beds", bedRouter);
 router
   .route("/")
-  // add this staffProtect, authorize("admin"),
   .get(advancedResults(Hospital), getHospitals)
   .post(staffProtect, authorize("admin"), createHospital);
 
-router.route("/addresses").get(getAddresses);
 router
   .route("/:id")
   .get(staffProtect, authorize("admin"), getHospital)
   .put(staffProtect, authorize("admin"), updateHospital);
 
-router
-  .route("/:id/doctors")
-  .get(staffProtect, authorize("admin"), getDoctorsByHospitalId);
-
-router
-  .route("/:id/department")
-  .get(staffProtect, authorize("admin"), getDepartmentsByHospitalId);
+router.route("/addresses").get(getAddresses);
 
 module.exports = router;

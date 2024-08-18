@@ -25,36 +25,15 @@ const HospitalSchema = new Schema({
       required: true,
     },
   ],
-  patients: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Patient",
-      required: true,
-    },
-  ],
   phone_number: {
     type: String,
     required: [true, "Please add a phone_number"],
   },
-  departements: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Departement",
-      required: true,
-    },
-  ],
-  staff: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Staff",
-      required: true,
-    },
-  ],
   reviews: [
     {
       id: {
-        type: Schema.Types.ObjectId,
-        ref: "User", // assuming reviews are linked to users, otherwise use other logic for the ID
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Patient",
       },
       rating: {
         type: Number,
@@ -64,6 +43,10 @@ const HospitalSchema = new Schema({
       },
     },
   ],
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

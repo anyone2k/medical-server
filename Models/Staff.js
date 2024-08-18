@@ -1,18 +1,25 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-
+const validator = require("validator");
 const Schema = mongoose.Schema;
 
 const StaffSchema = new Schema({
-  name: {
-    type: String,
-    required: [true, "Please add a name"],
+  fullName: {
+    firstName: {
+      type: String,
+      required: [true, "Please add a first name"],
+    },
+    lastName: {
+      type: String,
+      required: [true, "Please add a last name"],
+    },
   },
   email: {
     type: String,
     required: [true, "Please provide an email"],
     unique: true,
+    validate: [validator.isEmail, "Please provide a valid email"],
   },
   password: {
     type: String,
@@ -23,6 +30,11 @@ const StaffSchema = new Schema({
     type: String,
     enum: ["admin", "doctor", "nurse", "receptionist"],
     required: [true, "Please provide a role"],
+  },
+  hospital: {
+    type: Schema.Types.ObjectId,
+    ref: "Hospital",
+    required: true,
   },
   photo: {
     type: String,

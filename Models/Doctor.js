@@ -87,6 +87,20 @@ const DoctorSchema = new mongoose.Schema({
     ref: "Hospital",
     required: true,
   },
+  reviews: [
+    {
+      id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Patient",
+      },
+      rating: {
+        type: Number,
+        min: 1,
+        max: 5,
+        required: [true, "Please add a rating between 1 and 5"],
+      },
+    },
+  ],
   isActive: {
     type: Boolean,
     default: true,

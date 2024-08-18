@@ -8,27 +8,17 @@ const DepartementSchema = new Schema({
   },
   headOfDepartement: {
     type: Schema.Types.ObjectId,
-    ref: "Staff",
+    ref: "Doctor",
     required: true,
   },
-  staff: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Staff",
-      required: true,
-    },
-  ],
-  patients: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Patient",
-      required: true,
-    },
-  ],
   hospital: {
     type: Schema.Types.ObjectId,
     ref: "Hospital",
     required: true,
+  },
+  isActive: {
+    type: Boolean,
+    default: true,
   },
   createdAt: {
     type: Date,

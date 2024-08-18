@@ -6,7 +6,6 @@ const cors = require("cors");
 const helmet = require("helmet");
 const hpp = require("hpp");
 const xss = require("xss-clean");
-const rateLimit = require("express-rate-limit");
 const expressMongoSanitize = require("express-mongo-sanitize");
 
 // Load env vars
@@ -31,16 +30,16 @@ app.use(helmet());
 app.use(hpp());
 app.use(xss());
 app.use(expressMongoSanitize());
-app.use(
-  rateLimit({
-    windowMs: 10 * 60 * 1000,
-    max: 100,
-  })
-);
 
 // Routes
 const routesHospital = require("./routes/hospital");
 app.use(`${serverVersion}/hospitals`, routesHospital);
+
+const routesStaff = require("./routes/staff");
+app.use(`${serverVersion}/staff`, routesStaff);
+
+const routesPatient = require("./routes/patient");
+app.use(`${serverVersion}/patients`, routesPatient);
 
 const routesDoctor = require("./routes/doctor");
 app.use(`${serverVersion}/doctors`, routesDoctor);

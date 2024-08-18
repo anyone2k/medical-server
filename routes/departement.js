@@ -2,21 +2,30 @@
 const express = require("express");
 
 const {
- getDepartments,
+  getDepartments,
   getDepartment,
   createDepartment,
   updateDepartment,
- 
 } = require("../controllers/departement");
+
+const router = express.Router({ mergeParams: true });
+
+const advancedResults = require("../middleware/advancedResults");
+const Departement = require("../Models/Departement");
 const { protect, authorize, staffProtect } = require("../middleware/auth");
-
-const router = express.Router();
-
-router.route("/").get(getDepartments).post(protect, createDepartment);
+router
+  .route("/")
+  .get(
+    advancedResults(Departement, {
+      path: "hospital",
+      select: "name headOfDepartement",
+    }),
+    getDepartments
+  )
+  .post(protect, createDepartment);
 router
   .route("/:id")
-  .get(staffProtect,authorize("admin"), getDepartment)
-  .put(staffProtect, authorize("admin"), updateDepartment)
-  
+  .get(staffProtect, authorize("admin"), getDepartment)
+  .put(staffProtect, authorize("admin"), updateDepartment);
 
 module.exports = router;

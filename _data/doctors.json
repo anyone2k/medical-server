@@ -12,7 +12,7 @@
       "field": "orthopedics"
     },
     "profilePicture": "https://lh3.googleusercontent.com/a/ACg8ocK_TTJu99pnQhFstjDnxiAwmL6EZnXly_jOJay_bxD64XaDpA=s96-c",
-    "hospital": "66bfb3cba44df1ca048dae44",
+    "hospital": "66c16d5f7a4e2967e02215c0",
     "isActive": true,
     "createdAt": "2023-08-17T12:00:00Z"
   },
@@ -29,7 +29,7 @@
       "field": "odontology"
     },
     "profilePicture": "https://lh3.googleusercontent.com/a/ACg8ocK_TTJu99pnQhFstjDnxiAwmL6EZnXly_jOJay_bxD64XaDpA=s96-c",
-    "hospital": "66bfb3cba44df1ca048dae44",
+    "hospital": "66c16d5f7a4e2967e02215c1",
     "isActive": true,
     "createdAt": "2023-08-17T12:00:00Z"
   },
@@ -46,7 +46,7 @@
       "field": "cardiology"
     },
     "profilePicture": "https://lh3.googleusercontent.com/a/ACg8ocK_TTJu99pnQhFstjDnxiAwmL6EZnXly_jOJay_bxD64XaDpA=s96-c",
-    "hospital": "66bfb3cba44df1ca048dae44",
+    "hospital": "66c16d5f7a4e2967e02215c2",
     "isActive": false,
     "createdAt": "2023-08-17T12:00:00Z"
   }

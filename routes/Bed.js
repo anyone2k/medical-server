@@ -8,13 +8,18 @@ const {
   updateBed,
   deleteBed,
 } = require("../controllers/bed");
-const { staffProtect, authorize } = require("../middleware/auth");
 
-const router = express.Router();
+const { staffProtect, authorize } = require("../middleware/auth");
+const Bed = require("../Models/Bed");
+const router = express.Router({ mergeParams: true });
+const advancedResults = require("../middleware/advancedResults");
 
 router
   .route("/")
-  .get(getBeds)
+  .get(
+    advancedResults(Bed, { path: "hospital", select: "bed_number" }),
+    getBeds
+  )
   .post(staffProtect, authorize("admin", "receptionist"), createBed);
 router
   .route("/:id")

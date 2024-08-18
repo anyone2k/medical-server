@@ -7,36 +7,36 @@ const {
   getAddresses,
   createHospital,
   updateHospital,
-  getDoctorsByHospitalId,
-  getDepartmentsByHospitalId,
 } = require("../controllers/hospital");
 
 const Hospital = require("../Models/Hospital");
 
-const router = express.Router({ mergeParams: true });
-
 const advancedResults = require("../middleware/advancedResults");
 
-const { authorize, staffProtect } = require("../middleware/auth");
+const staffRouter = require("./staff");
+const departmentRouter = require("./departement");
+const doctorRouter = require("./doctor");
+const patientRouter = require("./patient");
+const bedRouter = require("./bed");
 
+const { authorize, staffProtect } = require("../middleware/auth");
+const router = express.Router();
+
+router.use("/:hospitalId/staff", staffRouter);
+router.use("/:hospitalId/departments", departmentRouter);
+router.use("/:hospitalId/doctors", doctorRouter);
+router.use("/:hospitalId/patients", patientRouter);
+router.use("/:hospitalId/beds", bedRouter);
 router
   .route("/")
-  // add this staffProtect, authorize("admin"),
-  .get(getHospitals)
+  .get(advancedResults(Hospital), getHospitals)
   .post(staffProtect, authorize("admin"), createHospital);
 
-router.route("/addresses").get(getAddresses);
 router
   .route("/:id")
   .get(staffProtect, authorize("admin"), getHospital)
   .put(staffProtect, authorize("admin"), updateHospital);
 
-router
-  .route("/:id/doctors")
-  .get(staffProtect, authorize("admin"), getDoctorsByHospitalId);
-
-router
-  .route("/:id/department")
-  .get(staffProtect, authorize("admin"), getDepartmentsByHospitalId);
+router.route("/addresses").get(getAddresses);
 
 module.exports = router;

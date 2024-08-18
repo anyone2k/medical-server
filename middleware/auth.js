@@ -1,8 +1,6 @@
 // Internal imports
 const Staff = require("../Models/Staff");
 
-const Patient = require("../Models/Patient");
-
 const Doctor = require("../Models/Doctor");
 const asyncHandler = require("./async");
 const { decodeToken } = require("../utils/userFunctions");

@@ -7,13 +7,12 @@ const {
   createDepartment,
   updateDepartment,
 } = require("../controllers/departement");
-const { protect, authorize, staffProtect } = require("../middleware/auth");
 
 const router = express.Router({ mergeParams: true });
 
 const advancedResults = require("../middleware/advancedResults");
 const Departement = require("../Models/Departement");
-
+const { protect, authorize, staffProtect } = require("../middleware/auth");
 router
   .route("/")
   .get(

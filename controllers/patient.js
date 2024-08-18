@@ -1,7 +1,6 @@
 // External imports
 const asyncHandler = require("../middleware/async");
 const ErrorResponse = require("../utils/errorResponse");
-const Department = require("../Models/Departement");
 
 const Patient = require("../Models/Patient");
 // @desc  get all patients by hospital
@@ -25,10 +24,10 @@ exports.getPatients = asyncHandler(async (req, res, next) => {
 // @desc  get single patient
 // @route   get /api/v1/patients/:id
 // @access  public
-exports.getPatientById = asyncHandler(async (req, res, next) => {
+exports.getPatient = asyncHandler(async (req, res, next) => {
   const patient = await Patient.findById(
-    req.params.patientId,
-    "_id name email profilePicture"
+    req.params.id,
+    "name email profilePicture"
   );
   if (patient === null) {
     return next(

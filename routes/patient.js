@@ -5,7 +5,6 @@ const {
   createPatient,
   getPatient,
   updatePatient,
-  deletePatient,
 } = require("../controllers/patient");
 
 const router = express.Router({ mergeParams: true });
@@ -25,7 +24,7 @@ router
   .post(staffProtect, authorize("admin"), createPatient);
 router
   .route("/:id")
-  .get(staffProtect, getPatient)
-  .put(staffProtect, updatePatient)
-  .delete(staffProtect, deletePatient);
+  .get(staffProtect, authorize("admin"), getPatient)
+  .put(staffProtect, authorize("admin"), updatePatient);
+// .delete(staffProtect, deletePatient);
 module.exports = router;

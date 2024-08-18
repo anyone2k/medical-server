@@ -17,7 +17,7 @@ router
   .get(
     advancedResults(Patient, {
       path: "hospital",
-      select: "name email role",
+      select: "name email",
     }),
     getPatients
   )

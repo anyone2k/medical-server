@@ -1,26 +1,20 @@
 [
   {
     "name": "Cardiology",
-    "headOfDepartement": "66b875e41d81c34facf7d703",
-    "staff": ["66b875e41d81c34facf7d702"],
-    "patients": ["66bfbc7ad644847265aaa70c"],
-    "hospital": "66bfb3cba44df1ca048dae44"
-   
+    "headOfDepartement": "64dfcf12345ab67890cdef01",
+    "hospital": "66c16d5f7a4e2967e02215c1",
+    "createdAt": "2023-05-15T00:00:00.000Z"
   },
   {
     "name": "Neurology",
-    "headOfDepartement": "66b875e41d81c34facf7d704",
-    "staff": ["66b875e41d81c34facf7d704"],
-    "patients": ["66bfbc7ad644847265aaa70d"],
-    "hospital": "66bfb3cba44df1ca048dae44"
-    
+    "headOfDepartement": "64dfcf22345ab67890cdef02",
+    "hospital": "66c16d5f7a4e2967e02215c1",
+    "createdAt": "2023-06-10T00:00:00.000Z"
   },
   {
-    "name": "Oncology",
-    "headOfDepartement": "66b875e41d81c34facf7d700",
-    "staff": ["66b875e41d81c34facf7d700"],
-    "patients": ["66bfbc7ad644847265aaa70b"],
-    "hospital": "66bfb3cba44df1ca048dae44"
-    
+    "name": "Pediatrics",
+    "headOfDepartement": "64dfcf32345ab67890cdef03",
+    "hospital": "66c16d5f7a4e2967e02215c1",
+    "createdAt": "2023-07-22T00:00:00.000Z"
   }
 ]

@@ -11,6 +11,11 @@ const DepartementSchema = new Schema({
     ref: "Doctor",
     required: true,
   },
+  hospital: {
+    type: Schema.Types.ObjectId,
+    ref: "Hospital",
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

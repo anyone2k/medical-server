@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const colors = require("colors");
 const dotenv = require("dotenv");
 // const Publication = require("./Models/Publication");
- //const Hospital = require("./Models/Hospital");
+//const Hospital = require("./Models/Hospital");
 const Department = require("./Models/Departement");
 // const Staff = require("./Models/Staff");
 //const Patient = require("./models/Patient");
@@ -41,10 +41,10 @@ const doctors = JSON.parse(
 // Import Data Into Database
 const importData = async () => {
   try {
-    await Doctor.create(doctors);
+    // await Doctor.create(doctors);
     // await Publication.create(publications);
-   // await Hospital.create(hospitals);
-    // await Department.create(departements);
+    // await Hospital.create(hospitals);
+    await Department.create(departements);
     // await Staff.create(staffs);
     // await Patient.create(patients);
     // await Schedule.create(schedules);

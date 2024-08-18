@@ -1,6 +1,12 @@
 const express = require("express");
 const Patient = require("../Models/Patient");
-const { getPatients, createPatient } = require("../controllers/patient");
+const {
+  getPatients,
+  createPatient,
+  getPatient,
+  updatePatient,
+  deletePatient,
+} = require("../controllers/patient");
 
 const router = express.Router({ mergeParams: true });
 
@@ -17,4 +23,9 @@ router
     getPatients
   )
   .post(staffProtect, authorize("admin"), createPatient);
+router
+  .route("/:id")
+  .get(staffProtect, getPatient)
+  .put(staffProtect, updatePatient)
+  .delete(staffProtect, deletePatient);
 module.exports = router;

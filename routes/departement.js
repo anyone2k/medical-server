@@ -19,7 +19,7 @@ router
   .get(
     advancedResults(Departement, {
       path: "hospital",
-      select: "name email role",
+      select: "name headOfDepartement",
     }),
     getDepartments
   )

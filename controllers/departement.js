@@ -11,7 +11,7 @@ exports.getDepartments = asyncHandler(async (req, res, next) => {
   if (req.params.hospitalId) {
     const departments = await Department.find({
       hospital: req.params.hospitalId,
-    }).populate("hospital", "name email role");
+    }).select("name headOfDepartement");
 
     return res.status(200).json({
       success: true,

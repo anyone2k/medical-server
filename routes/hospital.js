@@ -16,15 +16,21 @@ const Hospital = require("../Models/Hospital");
 const advancedResults = require("../middleware/advancedResults");
 
 const staffRouter = require("./staff");
+const departmentRouter = require("./departement");
+const doctorRouter = require("./doctor");
+const patientRouter = require("./patient");
+
 const { authorize, staffProtect } = require("../middleware/auth");
 const router = express.Router();
 
 router.use("/:hospitalId/staff", staffRouter);
-
+router.use("/:hospitalId/departments", departmentRouter);
+router.use("/:hospitalId/doctors", doctorRouter);
+router.use("/:hospitalId/patients", patientRouter);
 router
   .route("/")
   // add this staffProtect, authorize("admin"),
-  .get(advancedResults(Hospital, "staff"), getHospitals)
+  .get(advancedResults(Hospital), getHospitals)
   .post(staffProtect, authorize("admin"), createHospital);
 
 router.route("/addresses").get(getAddresses);

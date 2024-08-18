@@ -1,6 +1,6 @@
 // External imports
 const express = require("express");
-
+const Doctor = require("../Models/Doctor");
 const {
   getDoctors,
   getDoctor,
@@ -8,14 +8,24 @@ const {
   updateDoctor,
   deleteDoctor,
 } = require("../controllers/doctor");
-const { protect, authorize, staffProtect } = require("../middleware/auth");
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
+const advancedResults = require("../middleware/advancedResults");
+const { staffProtect, authorize } = require("../middleware/auth");
 
-router.route("/").get(getDoctors).post(protect, createDoctor);
+router
+  .route("/")
+  .get(
+    advancedResults(Doctor, {
+      path: "hospital",
+      select: "name",
+    }),
+    getDoctors
+  )
+  .post(staffProtect, createDoctor);
 router
   .route("/:id")
-  .get(staffProtect,authorize("admin"), getDoctor)
+  .get(staffProtect, authorize("admin"), getDoctor)
   .put(staffProtect, authorize("admin"), updateDoctor)
   .delete(staffProtect, authorize("admin"), deleteDoctor);
 

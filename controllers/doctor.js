@@ -9,18 +9,23 @@ const {
   updateById,
   deleteById,
 } = require("../utils/userFunctions");
-const { getRessourcesWithPopulate } = require("../utils/resourcesFunctions");
 
 // @desc  Get all doctors
 // @route   GET /api/v1/doctors
 // @access  public
 exports.getDoctors = asyncHandler(async (req, res, next) => {
-  const results = await getRessourcesWithPopulate(
-    Doctor,
-    "hospital",
-    "name address"
-  );
-  res.status(200).json(results);
+  if (req.params.hospitalId) {
+    const doctors = await Doctor.find({
+      hospital: req.params.hospitalId,
+    }).select("fullName email sex specialisation");
+    return res.status(200).json({
+      success: true,
+      count: doctors.length,
+      data: doctors,
+    });
+  } else {
+    res.status(200).json(res.advancedResults);
+  }
 });
 
 // @desc  Get single doctor

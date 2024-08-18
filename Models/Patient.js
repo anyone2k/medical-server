@@ -56,6 +56,10 @@ const PatientSchema = new Schema(
       type: String,
       default: "no-photo.jpg",
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

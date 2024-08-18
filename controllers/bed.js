@@ -1,5 +1,4 @@
-
-const Bed= require("../Models/Bed");
+const Bed = require("../Models/Bed");
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
 const {
@@ -14,15 +13,25 @@ const {
 // @route   GET /api/v1/beds
 // @access  public
 exports.getBeds = asyncHandler(async (req, res, next) => {
-  const results = await getRessources(Bed);
-  res.status(200).json(results);
+  if (req.params.hospitalId) {
+    const beds = await Bed.find({
+      hospital: req.params.hospitalId,
+    }).select("bed_number occupied");
+    return res.status(200).json({
+      success: true,
+      count: beds.length,
+      data: beds,
+    });
+  } else {
+    res.status(200).json(res.advancedResults);
+  }
 });
 
 // @desc  Get single bed
 // @route   GET /api/v1/bed/:id
 // @access  public
 exports.getBed = asyncHandler(async (req, res, next) => {
-  const result = await getRessourceById(Bed, req,next);
+  const result = await getRessourceById(Bed, req, next);
   res.status(200).json(result);
 });
 

@@ -19,6 +19,7 @@ const staffRouter = require("./staff");
 const departmentRouter = require("./departement");
 const doctorRouter = require("./doctor");
 const patientRouter = require("./patient");
+const bedRouter = require("./bed");
 
 const { authorize, staffProtect } = require("../middleware/auth");
 const router = express.Router();
@@ -27,6 +28,7 @@ router.use("/:hospitalId/staff", staffRouter);
 router.use("/:hospitalId/departments", departmentRouter);
 router.use("/:hospitalId/doctors", doctorRouter);
 router.use("/:hospitalId/patients", patientRouter);
+router.use("/:hospitalId/beds", bedRouter);
 router
   .route("/")
   // add this staffProtect, authorize("admin"),

@@ -8,21 +8,18 @@ const Patient = require("../Models/Patient");
 // @route   get /api/v1/patients
 // @access  public
 exports.getPatients = asyncHandler(async (req, res, next) => {
-  // get all patients from the hospital use the following route "/:id/departements/:departementId/staff"
-  const department = await Department.findById(req.params.departmentId);
-  if (!department) {
-    return next(
-      new ErrorResponse(
-        `Department not found with id of ${req.params.departmentId}`,
-        404
-      )
-    );
+  if (req.params.hospitalId) {
+    const patients = await Patient.find({
+      hospital: req.params.hospitalId,
+    }).select("name email age");
+    return res.status(200).json({
+      success: true,
+      count: patients.length,
+      data: patients,
+    });
+  } else {
+    res.status(200).json(res.advancedResults);
   }
-  const patients = await Department.findById(req.params.departmentId).populate(
-    "patients",
-    "name email"
-  );
-  res.status(200).json(patients["patients"]);
 });
 
 // @desc  get single patient

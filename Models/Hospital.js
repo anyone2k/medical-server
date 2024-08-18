@@ -25,24 +25,10 @@ const HospitalSchema = new Schema({
       required: true,
     },
   ],
-  patients: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Patient",
-      required: true,
-    },
-  ],
   phone_number: {
     type: String,
     required: [true, "Please add a phone_number"],
   },
-  departements: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Departement",
-      required: true,
-    },
-  ],
   reviews: [
     {
       id: {

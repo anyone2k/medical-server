@@ -32,6 +32,11 @@ const PatientSchema = new Schema(
       type: Date,
       trim: true,
     },
+    hospital: {
+      type: Schema.Types.ObjectId,
+      ref: "Hospital",
+      required: true,
+    },
     phone_number: {
       type: String,
       required: [true, "Please provide a phone number :"],

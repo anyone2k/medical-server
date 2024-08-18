@@ -4,6 +4,7 @@ const Hospital = require("../Models/Hospital");
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
 const { getRessources, createRessource } = require("../utils/userFunctions");
+const { getRessourcesWithPopulate } = require("../utils/resourcesFunctions");
 
 // @desc  get all hospitals
 // @route   get /api/v1/hospitals
@@ -11,7 +12,7 @@ const { getRessources, createRessource } = require("../utils/userFunctions");
 exports.getHospitals = asyncHandler(async (req, res, next) => {
   // create a return of all hospitals that the user is part of the staff
   {
-    const hospitals = await getRessources(Hospital);
+    const hospitals = await getRessourcesWithPopulate(Hospital, "staff", "");
 
     return res.status(200).json(hospitals);
   }

@@ -8,11 +8,13 @@ const {
   updateDoctor,
   deleteDoctor,
 } = require("../controllers/doctor");
-
+const scheduleRouter = require("./schedule");
 const router = express.Router({ mergeParams: true });
 const advancedResults = require("../middleware/advancedResults");
+
 const { staffProtect, authorize } = require("../middleware/auth");
 
+router.use("/:doctorId/schedule", scheduleRouter);
 router
   .route("/")
   .get(

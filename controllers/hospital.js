@@ -67,6 +67,57 @@ exports.updateHospital = asyncHandler(async (req, res, next) => {
   }
 });
 
+// activate a hospital
+// @route   put /api/v1/hospitals/:id/activate
+// @access  private
+exports.activateHospital = asyncHandler(async (req, res, next) => {
+  let hospital = await Hospital.findById(req.params.id);
+
+  if (!hospital) {
+    return next(
+      new ErrorResponse(`Hospital not found with id of ${req.params.id}`, 404)
+    );
+  }
+
+  hospital.isActive = true;
+
+  try {
+    await hospital.save();
+    res.status(200).json({
+      success: true,
+      data: hospital,
+    });
+  } catch (error) {
+    return next(new ErrorResponse(error.message, 400));
+  }
+});
+
+// deactivate a hospital
+// @route   put /api/v1/hospitals/:id/deactivate
+// @access  private
+
+exports.deactivateHospital = asyncHandler(async (req, res, next) => {
+  let hospital = await Hospital.findById(req.params.id);
+
+  if (!hospital) {
+    return next(
+      new ErrorResponse(`Hospital not found with id of ${req.params.id}`, 404)
+    );
+  }
+
+  hospital.isActive = false;
+
+  try {
+    await hospital.save();
+    res.status(200).json({
+      success: true,
+      data: hospital,
+    });
+  } catch (error) {
+    return next(new ErrorResponse(error.message, 400));
+  }
+});
+
 exports.getAddresses = asyncHandler(async (req, res, next) => {
   const addresses = await Hospital.find().select("name address");
 

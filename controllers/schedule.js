@@ -1,5 +1,22 @@
 const Schedule = require("../Models/Schedule");
 
+//
+// Get all schedules of a specific doctor
+exports.getSchedules = async (req, res) => {
+  try {
+    const schedules = await Schedule.find({ doctor: req.params.doctorId });
+    res.status(200).json({
+      success: true,
+      data: schedules,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 // Create a schedule
 exports.createSchedule = async (req, res) => {
   try {
@@ -10,22 +27,6 @@ exports.createSchedule = async (req, res) => {
     });
   } catch (error) {
     res.status(400).json({
-      success: false,
-      message: error.message,
-    });
-  }
-};
-
-// Read all schedules of a specific staff member
-exports.readAllSchedules = async (req, res) => {
-  try {
-    const schedules = await Schedule.find({ staff: req.params.staffId });
-    res.status(200).json({
-      success: true,
-      data: schedules,
-    });
-  } catch (error) {
-    res.status(404).json({
       success: false,
       message: error.message,
     });

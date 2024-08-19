@@ -1,0 +1,11 @@
+[{
+    "days": {
+      "sun": false,
+      "mon": true,
+      "tue": true,
+      "wed": true,
+      "thu": true,
+      "fri": false,
+      "sat": false
+    }
+  }]

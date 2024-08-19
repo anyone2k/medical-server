@@ -5,28 +5,18 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const AppointmentSchema = new Schema({
-  doctor: {
-    type: Schema.Types.ObjectId,
-    ref: "Doctor",
-    required: true,
-  },
   patient: {
     type: Schema.Types.ObjectId,
     ref: "Patient",
     required: true,
   },
-  day: {
-    type: String,
-    required: [true, "Please add a day"],
-  },
-  // start and end time of the appointment
-  startTime: {
+  dayTime: {
     type: Date,
-    required: [true, "Please add a start time"],
+    required: true,
   },
-  endTime: {
-    type: Date,
-    required: [true, "Please add an end time"],
+  duration: {
+    type: Number,
+    required: true,
   },
   reason: {
     type: String,

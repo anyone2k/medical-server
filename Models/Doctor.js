@@ -87,6 +87,11 @@ const DoctorSchema = new mongoose.Schema({
     ref: "Hospital",
     required: true,
   },
+  availability: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Availability",
+    required: true,
+  },
   reviews: [
     {
       id: {

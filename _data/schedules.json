@@ -1,0 +1,61 @@
+[
+    {
+      
+        "appointments": [
+          {
+            "_id": "",
+            "type": "ObjectId",
+            "ref": "Appointment"
+          },
+          {
+            "_id": "",
+            "type": "ObjectId",
+            "ref": "Appointment"
+          }
+        ]
+      ,
+      "doctor": {
+        "_id": "",
+        "type": "ObjectId",
+        "ref": "Doctor"
+      }
+    },
+    {
+      
+        "appointments": [
+          {
+            "_id": "",
+            "type": "ObjectId",
+            "ref": "Appointment"
+          }
+        ]
+      ,
+      "doctor": {
+        "_id": "",
+        "type": "ObjectId",
+        "ref": "Doctor"
+      }
+    },
+    {
+      
+        "appointments": [
+          {
+            "_id": "",
+            "type": "ObjectId",
+            "ref": "Appointment"
+          },
+          {
+            "_id": "",
+            "type": "ObjectId",
+            "ref": "Appointment"
+          }
+        ]
+      ,
+      "doctor": {
+        "_id": "",
+        "type": "ObjectId",
+        "ref": "Doctor"
+      }
+    }
+  ]
+  

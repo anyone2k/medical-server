@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
 
 const AvailabilitySchema = new mongoose.Schema({
-  doctor: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Doctor",
-    required: true,
-  },
   days: {
     sun: {
       type: Boolean,

@@ -1,0 +1,18 @@
+[
+  {
+    "patient": "66c239d2d6eca343d73bb664"
+    ,
+    "dayTime": "2024-09-20T14:00:00Z",
+    "duration": 60,
+    "reason": "Consultation pour douleurs thoraciques"
+    
+  },
+  {
+    "patient": "66c2b08ff5456a18f366b02f",
+    "dayTime": "2024-09-21T09:30:00Z",
+    "duration": 45,
+    "reason": "Examen de suivi post-opératoire"
+    
+  }
+
+]

@@ -1,0 +1,59 @@
+[
+    {
+      "days": {
+        "sun": true,
+        "mon": true,
+        "tue": false,
+        "wed": true,
+        "thu": true,
+        "fri": false,
+        "sat": true
+      }
+    },
+    {
+      "days": {
+        "sun": false,
+        "mon": true,
+        "tue": true,
+        "wed": false,
+        "thu": true,
+        "fri": true,
+        "sat": false
+      }
+    },
+    {
+      "days": {
+        "sun": true,
+        "mon": false,
+        "tue": true,
+        "wed": false,
+        "thu": false,
+        "fri": true,
+        "sat": true
+      }
+    },
+    {
+      "days": {
+        "sun": true,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": false,
+        "fri": false,
+        "sat": true
+      }
+    },
+    {
+      "days": {
+        "sun": false,
+        "mon": false,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": false,
+        "sat": true
+      }
+   
+    }
+  ]
+  

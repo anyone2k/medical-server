@@ -39,6 +39,6 @@ router
   .get(staffProtect, authorize("admin"), getHospital)
   .put(staffProtect, authorize("admin"), updateHospital);
 
-router.route("/addresses").get(getAddresses);
+router.route("/addresses/get").get(getAddresses);
 
 module.exports = router;

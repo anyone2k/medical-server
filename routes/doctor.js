@@ -18,7 +18,7 @@ router
   .get(
     advancedResults(Doctor, {
       path: "hospital",
-      select: "name",
+      select: "name address",
     }),
     getDoctors
   )

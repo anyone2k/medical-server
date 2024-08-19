@@ -6,51 +6,39 @@ const Schema = mongoose.Schema;
 
 const PatientSchema = new Schema(
   {
-    fullName: {
-      firstName: {
-        type: String,
-        required: [true, "Please add a first name"],
-      },
-      lastName: {
-        type: String,
-        required: [true, "Please add a last name"],
-      },
+    name: {
+      type: String,
+      required: [true, "Please provide a name"],
     },
     email: {
       type: String,
       required: [true, "Please provide an email"],
       unique: true,
-      validate: [validator.isEmail, "Please provide a valid email"],
-    },
-    password: {
-      type: String,
-      required: [true, "Please provide a password"],
-      select: false,
-      minlength: 6,
     },
     dateOfBirth: {
       type: Date,
       trim: true,
+      default: null,
     },
     hospital: {
       type: Schema.Types.ObjectId,
       ref: "Hospital",
-      required: true,
+      default: null,
     },
     phone_number: {
       type: String,
-      required: [true, "Please provide a phone number :"],
+      default: "",
     },
     medicalfile: [
       {
         type: Schema.Types.ObjectId,
         ref: "MedicalFile",
-        required: true,
+        default: null,
       },
     ],
     emergency_contact: {
       type: String,
-      required: [true, "Please provide a emergency contact :"],
+      default: "",
     },
     profilePicture: {
       type: String,

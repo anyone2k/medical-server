@@ -9,7 +9,7 @@ const dotenv = require("dotenv");
 //const Appointment = require("./Models/Appointment");
 // const Staff = require("./Models/Staff");
 //const Patient = require("./models/Patient");
-// const Schedule = require("./Models/Schedule");
+const Schedule = require("./Models/Schedule");
 //const Doctor = require("./Models/Doctor");
 //const Availability = require("./Models/Availability");
 // Load ENV Variables
@@ -36,9 +36,9 @@ const patients = JSON.parse(
 const doctors = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/doctors.json`, "utf-8")
 );
-// const schedules = JSON.parse(
-//   fs.readFileSync(`${__dirname}/_data/schedueles.json`, "utf-8")
-// );
+ const schedules = JSON.parse(
+   fs.readFileSync(`${__dirname}/_data/schedules.json`, "utf-8")
+);
 //const availability = JSON.parse(
   //fs.readFileSync(`${__dirname}/_data/availability.json`, "utf-8")
 //);
@@ -52,12 +52,12 @@ const importData = async () => {
     // await Doctor.create(doctors);
     // await Publication.create(publications);
     // await Hospital.create(hospitals);
-    await Appointment.create(appointment);
+   // await Appointment.create(appointment);
     // await Availability.create(availability);
     //await Department.create(departements);
     // await Staff.create(staffs);
     // await Patient.create(patients);
-    // await Schedule.create(schedules);
+     await Schedule.create(schedules);
   } catch (error) {
     console.error(error);
   }

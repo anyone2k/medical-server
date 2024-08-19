@@ -1,0 +1,24 @@
+[
+  {
+    "patient": {}
+    ,
+    "dayTime": "2024-09-20T14:00:00Z",
+    "duration": 60,
+    "reason": "Consultation pour douleurs thoraciques"
+    
+  },
+  {
+    "patient": {},
+    "dayTime": "2024-09-21T09:30:00Z",
+    "duration": 45,
+    "reason": "Examen de suivi post-opératoire"
+    
+  },
+  {
+    "patient": {},
+    "dayTime": "2024-09-22T16:00:00Z",
+    "duration": 30,
+    "reason": "Vaccination contre la grippe",
+ 
+  }
+]

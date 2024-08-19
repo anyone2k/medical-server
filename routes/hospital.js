@@ -7,6 +7,8 @@ const {
   getAddresses,
   createHospital,
   updateHospital,
+  deactivateHospital,
+  activateHospital,
 } = require("../controllers/hospital");
 
 const Hospital = require("../Models/Hospital");
@@ -38,6 +40,12 @@ router
   .route("/:id")
   .get(staffProtect, authorize("admin"), getHospital)
   .put(staffProtect, authorize("admin"), updateHospital);
+router
+  .route("/:id/deactivate")
+  .put(staffProtect, authorize("admin"), deactivateHospital);
+router
+  .route("/:id/activate")
+  .put(staffProtect, authorize("admin"), activateHospital);
 
 router.route("/addresses/get").get(getAddresses);
 

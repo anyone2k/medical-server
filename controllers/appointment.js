@@ -1,6 +1,11 @@
 // make a get request to /api/v1/appointments
 const Appointment = require("../Models/Appointment");
 const asyncHandler = require("../middleware/async");
+const {
+  
+    createRessource
+   
+  } = require("../utils/userFunctions");
 // @desc Get all appointments
 // @route GET /api/v1/appointments
 // @route GET /api/v1/patients/:patientId/appointments

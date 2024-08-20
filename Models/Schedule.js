@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const scheduleSchema = new Schema({
-  schedule: {
+  
     appointments: [
       {
         type: Schema.Types.ObjectId,
@@ -11,7 +11,7 @@ const scheduleSchema = new Schema({
         default: [],
       },
     ],
-  },
+  
   doctor: {
     type: Schema.Types.ObjectId,
     ref: "Doctor",

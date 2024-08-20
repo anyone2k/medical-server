@@ -12,7 +12,7 @@ const router = express.Router({ mergeParams: true });
 
 const advancedResults = require("../middleware/advancedResults");
 const Departement = require("../Models/Departement");
-const { protect, authorize, staffProtect } = require("../middleware/auth");
+const { authorize, staffProtect } = require("../middleware/auth");
 router
   .route("/")
   .get(
@@ -22,7 +22,8 @@ router
     }),
     getDepartments
   )
-  .post(protect, createDepartment);
+  .post(staffProtect, authorize("admin"), createDepartment);
+
 router
   .route("/:id")
   .get(staffProtect, authorize("admin"), getDepartment)

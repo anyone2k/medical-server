@@ -29,7 +29,7 @@ exports.getDepartments = asyncHandler(async (req, res, next) => {
 // @route   get /api/v1/departments/:id
 // @access  public
 exports.getDepartment = asyncHandler(async (req, res, next) => {
-  const department = await Department.findById(req.params.departmentId);
+  const department = await Department.findById(req.params.id);
 
   if (!department) {
     return next(
@@ -37,14 +37,7 @@ exports.getDepartment = asyncHandler(async (req, res, next) => {
     );
   }
 
-  res
-    .status(200)
-    .json(
-      await Department.findById(req.params.departmentId)
-        .populate("headOfDepartement", "name email")
-        .populate("patients", "name email age")
-        .populate("staff", "name email role")
-    );
+  res.status(200).json({ success: true, data: department });
 });
 
 // @desc  create a department

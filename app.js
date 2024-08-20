@@ -59,6 +59,9 @@ app.use(`${serverVersion}/bed`, routesBed);
 const routesDepartement = require("./routes/departement");
 app.use(`${serverVersion}/departement`, routesDepartement);
 
+const routesAppointment = require("./routes/appointment");
+app.use(`${serverVersion}/appointment`, routesAppointment);
+
 // Using the errorHandler middleware
 const errorHandler = require("./middleware/error");
 app.use(errorHandler);
@@ -70,9 +73,13 @@ const server = app.listen(PORT, () => {
       .yellow.bold
   );
 });
-// Handling unhandled promise rejection
 process.on("unhandledRejection", (err, promise) => {
-  console.log(`=> Error: ${err.message}\n`.red.underline);
-  //Close server & exit process
-  server.close(() => process.exit(1));
+  if (err.name === "TokenExpiredError") {
+    console.log("=> JWT expired, prompting token refresh.\n".yellow.underline);
+    // Handle token refresh logic here (e.g., re-authenticate the user)
+  } else {
+    console.log(`=> Error: ${err.message}\n`.red.underline);
+    // Close server & exit process for non-JWT related errors
+    server.close(() => process.exit(1));
+  }
 });

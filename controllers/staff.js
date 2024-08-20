@@ -3,7 +3,7 @@ const Departement = require("../Models/Departement");
 const Staff = require("../Models/Staff");
 const asyncHandler = require("../middleware/async");
 const ErrorResponse = require("../utils/errorResponse");
-
+const { registerFunction } = require("../utils/userFunctions");
 // @desc  get all staff by hospital
 // @route   get /api/v1/staff
 // @access  public
@@ -26,31 +26,25 @@ exports.getStaff = asyncHandler(async (req, res, next) => {
 // @route   get /api/v1/staff/:id
 // @access  public
 exports.getStaffById = asyncHandler(async (req, res, next) => {
-  const { departementId, id, staffId } = req.params;
+  const { id } = req.params;
 
-  const department = await Departement.findOne({
-    _id: departementId,
-    hospital: id,
-  }).populate({
-    path: "staff",
-    match: { _id: staffId },
-  });
+  const staff = await Staff.findById(id);
 
-  if (!department || !department.staff || department.staff.length === 0) {
+  if (!staff) {
     return next(
       new ErrorResponse(`Staff not found with id of ${staffId}`, 404)
     );
   }
 
-  res.status(200).send(department.staff);
+  res.status(200).send(staff);
 });
 
 // @desc  create staff
 // @route   post /api/v1/staff
 // @access  private
 exports.createStaff = asyncHandler(async (req, res, next) => {
-  const staff = await Staff.create(req.body);
-  res.status(201).send(staff);
+  const result = await registerFunction(Staff, req, next);
+  res.status(201).send("success");
 });
 
 // @desc  update staff

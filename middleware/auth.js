@@ -27,17 +27,15 @@ exports.protect = async (req, res, next) => {
   const tokenDecoded = decodeToken(req, res);
 
   try {
-    user = await Staff.findOne({ _id: tokenDecoded._id });
     user = await Patient.findOne({ _id: tokenDecoded._id });
-    user = await Doctor.findOne({ _id: tokenDecoded._id });
 
     if (!user) {
       return res
         .status(401)
         .send("Not authorized to access this route / Invalid Token");
     }
+
     req.user = user;
-    constole.log("User", user);
     next();
   } catch (error) {
     return res

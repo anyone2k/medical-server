@@ -6,9 +6,11 @@ const {
   getPatient,
   updatePatient,
 } = require("../controllers/patient");
+const routerAppointment = require("./appointment");
 
 const router = express.Router({ mergeParams: true });
-router.use("/:patientId/appointments", require("./appointment"));
+
+router.use("/:patientId/appointments", routerAppointment);
 const advancedResults = require("../middleware/advancedResults");
 const { staffProtect, authorize } = require("../middleware/auth");
 

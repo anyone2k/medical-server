@@ -1,5 +1,6 @@
 // make a get request to /api/v1/appointments
 const Appointment = require("../Models/Appointment");
+const Availability = require("../Models/Availability");
 const Doctor = require("../Models/Doctor");
 const asyncHandler = require("../middleware/async");
 const ErrorResponse = require("../utils/errorResponse");
@@ -29,12 +30,11 @@ exports.getAppointments = asyncHandler(async (req, res, next) => {
 
 exports.createAppointment = asyncHandler(async (req, res, next) => {
   const { patientId, doctorId } = req.body;
-
   // Get the doctor's availability
   const doctor = await Doctor.findOne({ _id: doctorId }).populate(
     "availability"
   );
-
+  console.log(doctor);
   if (!doctor) {
     return next(new ErrorResponse("Doctor not found", 404));
   }
@@ -44,14 +44,21 @@ exports.createAppointment = asyncHandler(async (req, res, next) => {
   const dayMapping = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 
   // Check if the doctor is available on the requested day
-  const availableOnDay = doctor.availability[dayMapping[dayOfWeek]];
+  const availableOnDay = doctor.availability.days[dayMapping[dayOfWeek]];
 
   if (!availableOnDay) {
     return next(new ErrorResponse(`Doctor is not available on this day`, 400));
   }
 
+  data = {
+    patient: patientId,
+    dayTime: req.body.dayTime,
+    duration: req.body.duration,
+    reason: req.body.reason,
+  };
+
   // Create the appointment
-  const appointment = await Appointment.create(req.body);
+  const appointment = await Appointment.create(data);
 
   res.status(201).json({
     success: true,

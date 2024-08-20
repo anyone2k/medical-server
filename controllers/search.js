@@ -1,17 +1,39 @@
 const asyncHandler = require("../middleware/async");
-const Hospital = require("../Models/Hospital");
-exports.getSearch = asyncHandler(async (req, res, next) => {
-  // create a search query
-  let query = req.query.search;
-  // search for the query in the database
-  const hospitals = await Hospital.find({
-    $or: [{ name: { $regex: query } }],
-  }).select("name location");
+const Doctor = require("../Models/Doctor");
 
-  // return the result
-  res.status(200).json({
-    success: true,
-    count: hospitals.length,
-    data: hospitals,
-  });
+exports.getSearch = asyncHandler(async (req, res) => {
+  let query = req.query.search;
+
+  if (!query) {
+    return res.status(400).json({
+      success: false,
+      message: "Please provide a search term.",
+    });
+  }
+
+  try {
+    // Create a case-insensitive regex from the query
+    const regex = new RegExp(query, "i"); // 'i' flag makes the regex case-insensitive
+
+    // Search for doctors by first name, last name, or specialisation
+    const doctors = await Doctor.find({
+      $or: [
+        { "fullName.firstName": regex }, // First name, case-insensitive
+        { "fullName.lastName": regex }, // Last name, case-insensitive
+        { "specialisation.field": regex }, // Specialisation, case-insensitive
+      ],
+    });
+
+    // Return the result
+    res.status(200).json({
+      success: true,
+      count: doctors.length,
+      data: doctors,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
 });

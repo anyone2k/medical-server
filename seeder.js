@@ -9,15 +9,23 @@ const dotenv = require("dotenv");
 //const Appointment = require("./Models/Appointment");
 // const Staff = require("./Models/Staff");
 //const Patient = require("./models/Patient");
+
 const Schedule = require("./Models/Schedule");
 //const Doctor = require("./Models/Doctor");
 //const Availability = require("./Models/Availability");
+
+// const Schedule = require("./Models/Schedule");
+//const Doctor = require("./Models/Doctor");
+
 // Load ENV Variables
 dotenv.config({ path: "./config/config.env" });
 
 // Load Models
 
 // Read JSON Files
+const availabilities = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/availabilities.json`, "utf-8")
+);
 const publications = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/publications.json`, "utf-8")
 );
@@ -40,21 +48,26 @@ const doctors = JSON.parse(
    fs.readFileSync(`${__dirname}/_data/schedules.json`, "utf-8")
 );
 //const availability = JSON.parse(
-  //fs.readFileSync(`${__dirname}/_data/availability.json`, "utf-8")
+//fs.readFileSync(`${__dirname}/_data/availability.json`, "utf-8")
 //);
 //const appointment = JSON.parse(
-  //fs.readFileSync(`${__dirname}/_data/appointment,json`, "utf-8")
+//fs.readFileSync(`${__dirname}/_data/appointment,json`, "utf-8")
 //);
 
 // Import Data Into Database
 const importData = async () => {
   try {
+    //await Availability.create(availabilities);
     // await Doctor.create(doctors);
     // await Publication.create(publications);
     // await Hospital.create(hospitals);
+
    // await Appointment.create(appointment);
     // await Availability.create(availability);
     //await Department.create(departements);
+
+    //await Department.create(departements);
+
     // await Staff.create(staffs);
     // await Patient.create(patients);
      await Schedule.create(schedules);

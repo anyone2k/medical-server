@@ -15,6 +15,7 @@ const advancedResults = require("../middleware/advancedResults");
 const { staffProtect, authorize } = require("../middleware/auth");
 
 router.use("/:doctorId/schedule", scheduleRouter);
+router.use("/search", require("./search"));
 router
   .route("/")
   .get(

@@ -16,7 +16,9 @@ exports.getBeds = asyncHandler(async (req, res, next) => {
   if (req.params.hospitalId) {
     const beds = await Bed.find({
       hospital: req.params.hospitalId,
-    }).select("hospital bed_number occupied");
+    })
+      .select("hospital bed_number occupied patient")
+      .populate("patient");
     return res.status(200).json({
       success: true,
       count: beds.length,

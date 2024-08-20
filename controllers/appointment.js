@@ -19,3 +19,28 @@ exports.getAppointments = asyncHandler(async (req, res, next) => {
     res.status(200).json(res.advancedResults);
   }
 });
+
+
+exports.createAppointment = asyncHandler(async (req, res, next) => {
+    const result = await createRessource(Appointment, req);
+    res.status(201).json(result);
+  });
+
+//exports.createAppointment = asyncHandler(async (req, res, next) => {
+ // const { patientId, doctorId, dayTime, duration, reason } = req.body;
+
+  // Création du rendez-vous
+  //const appointment = await Appointment.create({
+    //patient: patientId,
+    //doctor: doctorId,
+    //dayTime,
+    //duration,
+   // reason,
+  //});
+
+  // Répondre avec succès et renvoyer les détails du rendez-vous créé
+  //res.status(201).json({
+    //success: true,
+   // data: appointment,
+ // });
+//});

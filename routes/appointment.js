@@ -2,7 +2,7 @@ const express = require("express");
 // Internal imports
 const Appointment = require("../Models/Appointment");
 const {
-  //   getAppointment,
+  createAppointment,
   getAppointments,
 } = require("../controllers/appointment");
 
@@ -12,6 +12,7 @@ const { staffProtect, authorize } = require("../middleware/auth");
 
 router
   .route("/")
+  .post(createAppointment)
   .get(
     advancedResults(Appointment, { path: "patient", select: "name email" }),
     getAppointments

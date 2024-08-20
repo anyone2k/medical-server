@@ -3,7 +3,9 @@ const Appointment = require("../Models/Appointment");
 const asyncHandler = require("../middleware/async");
 const {
   
-    createRessource
+    createRessource,
+    updateById,
+    deleteById,
    
   } = require("../utils/userFunctions");
 // @desc Get all appointments
@@ -26,26 +28,20 @@ exports.getAppointments = asyncHandler(async (req, res, next) => {
 });
 
 
+
+
+
 exports.createAppointment = asyncHandler(async (req, res, next) => {
     const result = await createRessource(Appointment, req);
     res.status(201).json(result);
   });
 
-//exports.createAppointment = asyncHandler(async (req, res, next) => {
- // const { patientId, doctorId, dayTime, duration, reason } = req.body;
+exports.UpdateAppointment =  asyncHandler(async (req, res, next) => {
+    const result = await updateById(Appointment, req, next);
+    res.status(200).json(result);
+  });
 
-  // Création du rendez-vous
-  //const appointment = await Appointment.create({
-    //patient: patientId,
-    //doctor: doctorId,
-    //dayTime,
-    //duration,
-   // reason,
-  //});
-
-  // Répondre avec succès et renvoyer les détails du rendez-vous créé
-  //res.status(201).json({
-    //success: true,
-   // data: appointment,
- // });
-//});
+exports.DeleteAppointment = asyncHandler(async (req, res, next) => {
+    const result = await deleteById(Appointment, req, next);
+    res.status(204).json(result);
+  });

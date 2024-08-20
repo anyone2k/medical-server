@@ -3,59 +3,23 @@
       
         "appointments": [
           {
-            "_id": "",
+            "_id": "66c2e6b78e0a764a673c0f99",
             "type": "ObjectId",
             "ref": "Appointment"
           },
           {
-            "_id": "",
+            "_id": "66c2e6b78e0a764a673c0f9a",
             "type": "ObjectId",
             "ref": "Appointment"
           }
         ]
       ,
       "doctor": {
-        "_id": "",
-        "type": "ObjectId",
-        "ref": "Doctor"
-      }
-    },
-    {
-      
-        "appointments": [
-          {
-            "_id": "",
-            "type": "ObjectId",
-            "ref": "Appointment"
-          }
-        ]
-      ,
-      "doctor": {
-        "_id": "",
-        "type": "ObjectId",
-        "ref": "Doctor"
-      }
-    },
-    {
-      
-        "appointments": [
-          {
-            "_id": "",
-            "type": "ObjectId",
-            "ref": "Appointment"
-          },
-          {
-            "_id": "",
-            "type": "ObjectId",
-            "ref": "Appointment"
-          }
-        ]
-      ,
-      "doctor": {
-        "_id": "",
+        "_id": "66c2e9b5b9b3fc92c2bbf99e",
         "type": "ObjectId",
         "ref": "Doctor"
       }
     }
+    
   ]
   

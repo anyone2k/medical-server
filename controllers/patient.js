@@ -10,7 +10,7 @@ exports.getPatients = asyncHandler(async (req, res, next) => {
   if (req.params.hospitalId) {
     const patients = await Patient.find({
       hospital: req.params.hospitalId,
-    }).select("name email age");
+    }).select("name email dateOfBirth emergency_contact isActive");
     return res.status(200).json({
       success: true,
       count: patients.length,

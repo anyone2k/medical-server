@@ -7,9 +7,9 @@ const asyncHandler = require("../middleware/async");
 
 exports.getAppointments = asyncHandler(async (req, res) => {
   // check for patient id in the query
-  if (req.query.patient) {
+  if (req.params.patientId) {
     const appointments = await Appointment.find({
-      patient: req.query.patient,
+      patient: req.params.patientId,
     }).populate({ path: "doctor", select: "fullName specialisation" });
     return res.status(200).json({
       success: true,
